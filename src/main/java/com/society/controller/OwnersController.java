@@ -45,8 +45,9 @@ public class OwnersController {
         String[] houseNumbers = request.getParameterValues("houseNo");
         String[] ownerName = request.getParameterValues("ownerName");
         String[] ownerId = request.getParameterValues("ownerId");
+        String[] ownerEmail = request.getParameterValues("ownerEmail");
 
-       this.ownerService.insertOwner(houseNumbers,ownerName,ownerId,blockId,floorNumber);
+       this.ownerService.insertOwner(houseNumbers,ownerName,ownerId,ownerEmail,blockId,floorNumber);
 
         return new ModelAndView("redirect:/owners");
     }

@@ -7,8 +7,13 @@ import org.springframework.web.servlet.ModelAndView;
 @org.springframework.stereotype.Controller
 public class Controller {
 
+    @GetMapping(value = "/")
+    public ModelAndView index() {
+        return new ModelAndView("redirect:/index");
+    }
+    
     @GetMapping(value = "/index")
-    public ModelAndView helloWorld() {
+    public ModelAndView dashBoard() {
         return new ModelAndView("admin/index");
     }
 

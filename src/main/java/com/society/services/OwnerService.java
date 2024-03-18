@@ -6,7 +6,7 @@ import com.society.models.OwnerVo;
 
 public interface OwnerService {
 
-    void insertOwner(String[] houseNumbers, String[] ownerName, String[] ownerId,int blockId,int floorNumber);
+    void insertOwner(String[] houseNumbers, String[] ownerName, String[] ownerId,String[] ownerEmail,int blockId,int floorNumber);
 
     List<OwnerVo> findOwner(int blockId, int floorNo);
 }

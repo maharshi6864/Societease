@@ -1,3 +1,4 @@
+//Ajax function after change in block value.
 function blockChange(x) {
     var htp = new XMLHttpRequest();
     htp.onreadystatechange = function () {
@@ -13,40 +14,7 @@ function blockChange(x) {
     document.getElementById("submit-model").innerHTML = "Submit";
 }
 
-//Call value function when floor value changes;
-function floorChange(floor) {
-    console.log(floor)
-    var numberOfHouse = document.getElementById("number-of-house").value;
-    document.getElementById("house-numbers-label").innerHTML = `<div class="col-lg-4">
-  <label for="type-of-house" class="col-form-label"
-  >Houses No:
-  </label>
-  </div><div class="col-lg-8">
-  <label for="type-of-house" class="col-form-label"
-  >Owner Name:
-  </label>
-  </div>`
-    var blockNumber = document.getElementById("block-name-form").value;
-    bringOwnersToform(numberOfHouse, floor.value, blockNumber);
-    document.getElementById("ModalLabel").innerHTML = "Add Owners";
-    document.getElementById("submit-model").innerHTML = "Submit";
-}
-
-
-function blockChangeForTable(x) {
-    var htp = new XMLHttpRequest();
-    htp.onreadystatechange = function () {
-        if (htp.readyState == 4) {
-            var blockObj = JSON.parse(htp.responseText);
-            changeFloorsForTable(blockObj)
-        }
-    };
-    htp.open("GET", "http://localhost:8088/searchForFloor/" + x.value, true);
-    htp.send();
-
-}
-
-
+//Floor dropdown after ajax function blockChange(x) for form.
 function changeValues(obj) {
     console.log(obj)
     document.getElementById("house-numbers-label").innerHTML = ""
@@ -60,26 +28,10 @@ function changeValues(obj) {
         option.text = i + 1;
         numberOfHouse.add(option);
     }
-
 }
 
 
-function changeFloorsForTable(obj) {
-    console.log(obj)
-    document.getElementById("house-numbers-label").innerHTML = ""
-    document.getElementById("house-numbers-ownwers").innerHTML = ""
-    document.getElementById("number-of-house").value = obj.houseOnEachFloor;
-    var numberOfHouse = document.getElementById("number-of-floors-search");
-    numberOfHouse.innerHTML = "<option selected disabled>Select Floor Number</option>"
-    for (let i = 0; i < obj.noOfFloors; i++) {
-        var option = document.createElement("option");
-        option.value = i + 1
-        option.text = i + 1;
-        numberOfHouse.add(option);
-    }
-}
-
-
+//Ajax function after floor value changes for form.
 function bringOwnersToform(numberOfHouse, floor, blockNumber) {
     var blockName = document.getElementById("blockSearch").value;
     console.log(`http://localhost:8088/searchOwners/${floor}/${blockNumber}`);
@@ -94,7 +46,30 @@ function bringOwnersToform(numberOfHouse, floor, blockNumber) {
     htp.send();
 }
 
-//Creates Owner input boxes.
+//Creating label for form after ajax function bringOwnersToform(numberOfHouse, floor, blockNumber) for form.
+function floorChange(floor) {
+    console.log(floor)
+    var numberOfHouse = document.getElementById("number-of-house").value;
+    document.getElementById("house-numbers-label").innerHTML = `<div class="col-lg-2">
+  <label for="type-of-house" class="col-form-label"
+  >Houses No:
+  </label>
+  </div><div class="col-lg-5">
+  <label for="type-of-house" class="col-form-label"
+  >Owner Name:
+  </label>
+  </div><div class="col-lg-5">
+  <label for="type-of-house" class="col-form-label"
+  >Owner Email Address:
+  </label>
+  </div>`
+    var blockNumber = document.getElementById("block-name-form").value;
+    bringOwnersToform(numberOfHouse, floor.value, blockNumber);
+    document.getElementById("ModalLabel").innerHTML = "Add Owners";
+    document.getElementById("submit-model").innerHTML = "Submit";
+}
+
+//Creates Owner form after ajax function bringOwnersToform(numberOfHouse, floor, blockNumber) for form.
 function createOwnerForm(ownerList, numberOfHouse, floor) {
 
     if (ownerList.length !== 0) {
@@ -104,7 +79,7 @@ function createOwnerForm(ownerList, numberOfHouse, floor) {
     document.getElementById("house-numbers-ownwers").innerHTML = ""
     for (let i = 0; i < numberOfHouse; i++) {
         var prevoiusHouse = document.getElementById("house-numbers-ownwers").innerHTML;
-        document.getElementById("house-numbers-ownwers").innerHTML = prevoiusHouse + `<div class="row mb-2" ><div class="col-lg-4">
+        document.getElementById("house-numbers-ownwers").innerHTML = prevoiusHouse + `<div class="row mb-2" ><div class="col-lg-2">
 <input
           type="hidden"
           class="form-control"
@@ -120,7 +95,7 @@ function createOwnerForm(ownerList, numberOfHouse, floor) {
           name="houseNo"
           />
       </div>
-    <div class="col-lg-8">
+    <div class="col-lg-5">
     <input
           type="text"
           placeholder="Type Owner Name"
@@ -128,11 +103,48 @@ function createOwnerForm(ownerList, numberOfHouse, floor) {
           id=""
           value="${ownerList.length === 0 ? '' : ownerList[i].ownerName}"
           name="ownerName"
-    />`
+    /></div>
+ <div class="col-lg-5">
+    <input
+          type="text"
+          placeholder="Type Owner Email Address"
+          class="form-control"
+          id=""
+          value="${ownerList.length === 0 ? '' : ownerList[i].ownerEmail}"
+          name="ownerEmail"
+    /></div>`
     }
 }
 
+//Ajax function after block changes for table.
+function blockChangeForTable(x) {
+    var htp = new XMLHttpRequest();
+    htp.onreadystatechange = function () {
+        if (htp.readyState == 4) {
+            var blockObj = JSON.parse(htp.responseText);
+            changeFloorsForTable(blockObj)
+        }
+    };
+    htp.open("GET", "http://localhost:8088/searchForFloor/" + x.value, true);
+    htp.send();
+}
 
+//Floor dropdown after ajax function blockChangeForTable(x) for table.
+function changeFloorsForTable(obj) {
+    console.log(obj)
+    document.getElementById("house-numbers-label").innerHTML = ""
+    document.getElementById("house-numbers-ownwers").innerHTML = ""
+    var numberOfHouse = document.getElementById("number-of-floors-search");
+    numberOfHouse.innerHTML = "<option selected disabled>Select Floor Number</option>"
+    for (let i = 0; i < obj.noOfFloors; i++) {
+        var option = document.createElement("option");
+        option.value = i + 1
+        option.text = i + 1;
+        numberOfHouse.add(option);
+    }
+}
+
+//Ajax function after floor values changes for table.
 function bringOwnersToTable(floor) {
     var blockName = document.getElementById("blockSearch").value;
     var floorNumber = floor.value;
@@ -147,29 +159,16 @@ function bringOwnersToTable(floor) {
     };
     htp.open("GET", `http://localhost:8088/searchOwners/${floorNumber}/${blockName}`, true);
     htp.send();
-
 }
 
-
+//Creating owner table after ajax function bringOwnersToTable(floor) for table.
 function createTable(listOfOwners) {
     var table = document.querySelector("#owner-table");
     table.innerHTML = "";
     if (listOfOwners.length === 0) {
         table.innerHTML = `<tr>
-                              <td colspan="3" style="text-align: center; padding: 50px">No Owner Details Found For Block and Floor.</td>
+                              <td colspan="4" style="text-align: center; padding: 50px">No Owner Details Found For Block and Floor.</td>
                             </tr>`
-        var blockElemet = document.getElementById("block-name-form");
-        blockElemet.value=document.getElementById("blockSearch").value;
-        console.log(blockElemet);
-        blockChange(blockElemet);
-       setTimeout(function ()
-       {
-           var floorNumbers = document.getElementById("number-of-floors");
-           floorNumbers.value=document.getElementById("number-of-floors-search").value;
-           console.log(floorNumbers.value);
-           floorChange(floorNumbers)
-       },1000)
-
     }
     for (var index = 0; index < listOfOwners.length; index++) {
         var newTR = table.insertRow(-1);
@@ -177,10 +176,11 @@ function createTable(listOfOwners) {
         }</p>`;
         newTR.insertCell(1).innerHTML = `${listOfOwners[index].houseNo}`;
         newTR.insertCell(2).innerHTML = `${listOfOwners[index].ownerName}`;
-
+        newTR.insertCell(3).innerHTML = `${listOfOwners[index].ownerEmail}`;
     }
 }
 
+//Emptying form after close button.
 function emptyForm() {
     const inputs = document.querySelectorAll('.model-form input selector')
     for (let i = 0; i < inputs.length; i++) {
@@ -189,5 +189,5 @@ function emptyForm() {
     document.getElementById("house-numbers-ownwers").innerHTML = ""
     document.getElementById("submit-model").innerHTML = "Submit";
     document.getElementById("ModalLabel").innerHTML = "Add Owners"
-    document.getElementById("house-numbers-label").innerHTML="";
+    document.getElementById("house-numbers-label").innerHTML = "";
 }

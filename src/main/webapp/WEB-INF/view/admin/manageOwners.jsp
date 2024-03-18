@@ -55,7 +55,7 @@
                 aria-labelledby="ModalLabel"
                 aria-hidden="true"
         >
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-xl" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="ModalLabel">Add Owners</h5>
@@ -72,7 +72,7 @@
                     <form action="ownerName" method="post" class="model-form">
                         <div class="modal-body">
                             <div class="row">
-                                <div class="col-lg-12">
+                                <div class="col-lg-4">
                                     <label class="col-form-label"
                                     >Block Name :
                                     </label>
@@ -92,21 +92,10 @@
                                         </c:forEach>
                                     </select>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-7">
+                                <div class="col-lg-4">
                                     <label for="number-of-floors" class="col-form-label"
                                     >Floor:
                                     </label>
-                                </div>
-                                <div class="col-lg-5">
-                                    <label for="number-of-floors" class="col-form-label"
-                                    >Number Of House:
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-7">
                                     <select
                                             class="form-control"
                                             id="number-of-floors"
@@ -116,7 +105,10 @@
                                         <option value="">- -</option>
                                     </select>
                                 </div>
-                                <div class="col-lg-5">
+                                <div class="col-lg-4">
+                                    <label for="number-of-floors" class="col-form-label"
+                                    >Number Of House:
+                                    </label>
                                     <input
                                             type="text"
                                             name=""
@@ -236,11 +228,12 @@
                                             <th>Sr.No</th>
                                             <th>House Number</th>
                                             <th>Owner Name</th>
+                                            <th>Owner Email Address</th>
                                         </tr>
                                         </thead>
                                         <tbody id="owner-table">
                                         <tr>
-                                            <td colspan="3" style="text-align: center; padding: 50px">- -</td>
+                                            <td colspan="4" style="text-align: center; padding: 50px">- -</td>
                                         </tr>
                                         </tbody>
                                     </table>

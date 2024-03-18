@@ -13,62 +13,73 @@ import javax.persistence.Table;
 @Table(name = "ownervo")
 public class OwnerVo {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "ownerId")
-	private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ownerId")
+    private int id;
 
-	@Column(name = "ownerName")
-	private String ownerName;
+    @Column(name = "ownerName")
+    private String ownerName;
 
-	@Column(name = "houseNo")
-	private String houseNo;
+    @Column(name = "ownerEmail")
+    private String ownerEmail;
 
-	@Column(name = "floorNo")
-	private int floorNo;
+    @Column(name = "houseNo")
+    private String houseNo;
 
-	@ManyToOne
-	@JoinColumn(name="blockId")
-	private BlockVo blockVo;
+    @Column(name = "floorNo")
+    private int floorNo;
 
-	public int getId() {
-		return id;
-	}
+    @ManyToOne
+    @JoinColumn(name = "blockId")
+    private BlockVo blockVo;
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public String getOwnerName() {
-		return ownerName;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public void setOwnerName(String ownerName) {
-		this.ownerName = ownerName;
-	}
+    public String getOwnerName() {
+        return ownerName;
+    }
 
-	public String getHouseNo() {
-		return houseNo;
-	}
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
+    }
 
-	public void setHouseNo(String houseNo) {
-		this.houseNo = houseNo;
-	}
+    public String getOwnerEmail() {
+        return ownerEmail;
+    }
 
-	public int getFloorNo() {
-		return floorNo;
-	}
+    public void setOwnerEmail(String ownerEmail) {
+        this.ownerEmail = ownerEmail;
+    }
 
-	public void setFloorNo(int floorNo) {
-		this.floorNo = floorNo;
-	}
+    public String getHouseNo() {
+        return houseNo;
+    }
 
-	public BlockVo getBlockVo() {
-		return blockVo;
-	}
+    public void setHouseNo(String houseNo) {
+        this.houseNo = houseNo;
+    }
 
-	public void setBlockVo(BlockVo blockVo) {
-		this.blockVo = blockVo;
-	}	
-	
+    public int getFloorNo() {
+        return floorNo;
+    }
+
+    public void setFloorNo(int floorNo) {
+        this.floorNo = floorNo;
+    }
+
+    public BlockVo getBlockVo() {
+        return blockVo;
+    }
+
+    public void setBlockVo(BlockVo blockVo) {
+        this.blockVo = blockVo;
+    }
+
 }

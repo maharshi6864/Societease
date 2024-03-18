@@ -19,7 +19,7 @@ public class OwnerServiceImp implements OwnerService {
     private OwnerDao ownerDao;
 
     @Override
-    public void insertOwner(String[] houseNumbers, String[] ownerName, String[] ownerId, int blockId, int floorNumber) {
+    public void insertOwner(String[] houseNumbers, String[] ownerName, String[] ownerId,String[] ownerEmail, int blockId, int floorNumber) {
         for (int index = 0; index < houseNumbers.length; index++) {
 
             OwnerVo ownerVo = new OwnerVo();
@@ -33,6 +33,7 @@ public class OwnerServiceImp implements OwnerService {
             ownerVo.setFloorNo(floorNumber);
             ownerVo.setHouseNo(houseNumbers[index]);
             ownerVo.setOwnerName(ownerName[index]);
+            ownerVo.setOwnerEmail(ownerEmail[index]);
             System.out.println(houseNumbers[index]);
             System.out.println(ownerName[index]);
             System.out.println(blockId);
