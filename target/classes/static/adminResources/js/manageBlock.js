@@ -25,4 +25,5 @@ function editBlock(block) {
   document.getElementById("house-on-each-floor").value = row.cells[2].innerHTML;
   document.getElementById("type-of-house").value = row.cells[3].innerHTML;
   document.getElementById("number-of-house").innerHTML = row.cells[1].innerHTML * row.cells[2].innerHTML;
+  document.getElementById("number-of-floors-search").innerHTML=""
 }

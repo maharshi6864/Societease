@@ -79,6 +79,7 @@
                                     <select
                                             class="form-control"
                                             name="blockId"
+                                            id="block-name-form"
                                             onchange="blockChange(this)"
                                     >
                                         <option value="" disabled selected>
@@ -136,7 +137,7 @@
                                     class="btn btn-primary"
                                     type="submit"
                                     value="Submit"
-                                    id="submit"
+                                    id="submit-model"
                             >
                                 Submit
                             </button>
@@ -218,7 +219,7 @@
                                 class="form-control"
                                 id="number-of-floors-search"
                                 name="floorNumber"
-                                onchange="bringOwners(this)"
+                                onchange="bringOwnersToTable(this)"
                         >
                             <option value="">- -</option>
                         </select>
@@ -262,7 +263,6 @@
 </div>
 <!-- container-scroller -->
 <!-- base:js -->
-<script src="adminResources/js/manageBlock.js"></script>
 <script src="adminResources/js/manageOwner.js"></script>
 <script src="adminResources/js/vendor.bundle.base.js"></script>
 <!-- endinject -->

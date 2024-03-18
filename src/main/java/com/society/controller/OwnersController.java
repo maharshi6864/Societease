@@ -20,58 +20,41 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 public class OwnersController {
 
-	@Autowired
-	private BlockService blockService;
+    @Autowired
+    private BlockService blockService;
 
-	@Autowired
-	private OwnerService ownerService;
+    @Autowired
+    private OwnerService ownerService;
 
-	@GetMapping(value = "/owners")
-	public ModelAndView manageOwners() {
-		List<BlockVo> blockList = this.blockService.searchBlock();
-		return new ModelAndView("admin/manageOwners").addObject("blockList", blockList);
-	}
+    @GetMapping(value = "/owners")
+    public ModelAndView manageOwners() {
+        List<BlockVo> blockList = this.blockService.searchBlock();
+        return new ModelAndView("admin/manageOwners").addObject("blockList", blockList);
+    }
 
-	@RequestMapping(value = "/searchForFloor/{id}", method = RequestMethod.GET)
-	public BlockVo searchForFloor(@PathVariable("id") int id) {
-		List<BlockVo> blockList = this.blockService.searchBlock();
-		BlockVo blockVo = this.blockService.findById(id);
-		return blockVo;
-	}
+    @RequestMapping(value = "/searchForFloor/{id}", method = RequestMethod.GET)
+    public BlockVo searchForFloor(@PathVariable("id") int id) {
+        List<BlockVo> blockList = this.blockService.searchBlock();
+        BlockVo blockVo = this.blockService.findById(id);
+        return blockVo;
+    }
 
-	@PostMapping(value = "/ownerName")
-	public ModelAndView addOwner(@RequestParam int blockId, @RequestParam int floorNumber, HttpServletRequest request) {
+    @PostMapping(value = "/ownerName")
+    public ModelAndView addOwner(@RequestParam int blockId, @RequestParam int floorNumber, HttpServletRequest request) {
 
-		String[] houseNumbers = request.getParameterValues("houseNo");
-		String[] ownerName = request.getParameterValues("ownerName");
+        String[] houseNumbers = request.getParameterValues("houseNo");
+        String[] ownerName = request.getParameterValues("ownerName");
+        String[] ownerId = request.getParameterValues("ownerId");
 
-		for (int index = 0; index < houseNumbers.length; index++) {
+       this.ownerService.insertOwner(houseNumbers,ownerName,ownerId,blockId,floorNumber);
 
-			OwnerVo ownerVo = new OwnerVo();
-			BlockVo blockVo = new BlockVo();
+        return new ModelAndView("redirect:/owners");
+    }
 
-			blockVo.setId(blockId);
-
-			ownerVo.setBlockVo(blockVo);
-			ownerVo.setFloorNo(floorNumber);
-			ownerVo.setHouseNo(houseNumbers[index]);
-			ownerVo.setOwnerName(ownerName[index]);
-			System.out.println(houseNumbers[index]);
-			System.out.println(ownerName[index]);
-			System.out.println(blockId);
-			System.out.println(floorNumber);
-			this.ownerService.insertOwner(ownerVo);
-		}
-
-		return new ModelAndView("redirect:/owners");
-	}
-
-	@RequestMapping(value = "/searchOwners/{floorNumber}/{blockName}", method = RequestMethod.GET)
-	public List<OwnerVo> searchOwner(@PathVariable("floorNumber") int floorNumber,
-			@PathVariable("blockName") int blockName) {
-		System.out.println(floorNumber);
-		System.out.println(blockName);
-		List<OwnerVo> list = this.ownerService.findOwner(blockName, floorNumber);
-		return list;
-	}
+    @RequestMapping(value = "/searchOwners/{floorNumber}/{blockName}", method = RequestMethod.GET)
+    public List<OwnerVo> searchOwner(@PathVariable("floorNumber") int floorNumber,
+                                     @PathVariable("blockName") int blockName) {
+        List<OwnerVo> list = this.ownerService.findOwner(blockName, floorNumber);
+        return list;
+    }
 }
