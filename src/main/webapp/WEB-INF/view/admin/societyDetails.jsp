@@ -41,7 +41,7 @@
 
         <div class="main-panel">
             <div class="content-wrapper">
-                <h3 class="main-title">Block Details</h3>
+                <h3 class="main-title">Society Details</h3>
                 <div class="d-flex justify-content-between align-content-center"
                      style="margin-bottom: 20px">
                     <nav aria-label="breadcrumb d-flex align-content-center"
@@ -49,7 +49,7 @@
                         <ol class="breadcrumb border-0 p-0 d-flex align-content-center">
                             <li class="breadcrumb-item"><a href="index">Dashboard</a></li>
                             <li class="breadcrumb-item active" aria-current="page">
-                                Manage Blocks
+                                Society Details
                             </li>
                         </ol>
                     </nav>

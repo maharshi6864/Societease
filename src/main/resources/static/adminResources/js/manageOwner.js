@@ -14,7 +14,7 @@ function blockChange(x) {
     document.getElementById("submit-model").innerHTML = "Submit";
 }
 
-//Floor dropdown after ajax function blockChange(x) for form.
+// Floor dropdown after ajax function blockChange(x) for form.
 function changeValues(obj) {
     console.log(obj)
     document.getElementById("house-numbers-label").innerHTML = ""
@@ -31,7 +31,7 @@ function changeValues(obj) {
 }
 
 
-//Ajax function after floor value changes for form.
+// Ajax function after floor value changes for form.
 function bringOwnersToform(numberOfHouse, floor, blockNumber) {
     var blockName = document.getElementById("blockSearch").value;
     console.log(`http://localhost:8088/searchOwners/${floor}/${blockNumber}`);
@@ -46,7 +46,8 @@ function bringOwnersToform(numberOfHouse, floor, blockNumber) {
     htp.send();
 }
 
-//Creating label for form after ajax function bringOwnersToform(numberOfHouse, floor, blockNumber) for form.
+// Creating label for form after ajax function bringOwnersToform(numberOfHouse,
+// floor, blockNumber) for form.
 function floorChange(floor) {
     console.log(floor)
     var numberOfHouse = document.getElementById("number-of-house").value;
@@ -69,7 +70,8 @@ function floorChange(floor) {
     document.getElementById("submit-model").innerHTML = "Submit";
 }
 
-//Creates Owner form after ajax function bringOwnersToform(numberOfHouse, floor, blockNumber) for form.
+// Creates Owner form after ajax function bringOwnersToform(numberOfHouse,
+// floor, blockNumber) for form.
 function createOwnerForm(ownerList, numberOfHouse, floor) {
 
     if (ownerList.length !== 0) {
@@ -116,7 +118,7 @@ function createOwnerForm(ownerList, numberOfHouse, floor) {
     }
 }
 
-//Ajax function after block changes for table.
+// Ajax function after block changes for table.
 function blockChangeForTable(x) {
     var htp = new XMLHttpRequest();
     htp.onreadystatechange = function () {
@@ -129,7 +131,7 @@ function blockChangeForTable(x) {
     htp.send();
 }
 
-//Floor dropdown after ajax function blockChangeForTable(x) for table.
+// Floor dropdown after ajax function blockChangeForTable(x) for table.
 function changeFloorsForTable(obj) {
     console.log(obj)
     document.getElementById("house-numbers-label").innerHTML = ""
@@ -144,7 +146,7 @@ function changeFloorsForTable(obj) {
     }
 }
 
-//Ajax function after floor values changes for table.
+// Ajax function after floor values changes for table.
 function bringOwnersToTable(floor) {
     var blockName = document.getElementById("blockSearch").value;
     var floorNumber = floor.value;
@@ -161,7 +163,7 @@ function bringOwnersToTable(floor) {
     htp.send();
 }
 
-//Creating owner table after ajax function bringOwnersToTable(floor) for table.
+// Creating owner table after ajax function bringOwnersToTable(floor) for table.
 function createTable(listOfOwners) {
     var table = document.querySelector("#owner-table");
     table.innerHTML = "";
@@ -180,7 +182,7 @@ function createTable(listOfOwners) {
     }
 }
 
-//Emptying form after close button.
+// Emptying form after close button.
 function emptyForm() {
     const inputs = document.querySelectorAll('.model-form input selector')
     for (let i = 0; i < inputs.length; i++) {
@@ -190,4 +192,7 @@ function emptyForm() {
     document.getElementById("submit-model").innerHTML = "Submit";
     document.getElementById("ModalLabel").innerHTML = "Add Owners"
     document.getElementById("house-numbers-label").innerHTML = "";
+    document.getElementById("number-of-house").value="- -"
+    document.getElementById("number-of-floors").innerHTML=" <option value=''>- -</option>";
+    document.getElementById("block-name-form").value="null";
 }
