@@ -15,7 +15,6 @@ com\society\Application.class
 com\society\repository\ownerDaoImp.class
 com\society\services\SocietyService.class
 com\society\models\BlockVo.class
-com\society\controller\BlockController.class
 com\society\repository\BlockDaoImp.class
 com\society\repository\OwnerDao.class
 com\society\controller\SocietyController.class
