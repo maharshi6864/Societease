@@ -10,17 +10,17 @@
     <title>Admin | Block Details</title>
     <!-- base:css -->
     <link rel="stylesheet"
-          href="adminResources/css/materialdesignicons.min.css"/>
-    <link rel="stylesheet" href="adminResources/css/vendor.bundle.base.css"/>
+          href="<%=request.getContextPath()%>/adminResources/css/materialdesignicons.min.css"/>
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/adminResources/css/vendor.bundle.base.css"/>
     <!-- endinject -->
     <!-- plugin css for this page -->
     <link rel="stylesheet"
-          href="adminResources/css/dataTables.bootstrap4.css"/>
+          href="<%=request.getContextPath()%>/adminResources/css/dataTables.bootstrap4.css"/>
     <!-- End plugin css for this page -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="adminResources/css/style.css"/>
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/adminResources/css/style.css"/>
     <!-- endinject -->
-    <link rel="shortcut icon" href="adminResources/image/favicon.png"/>
+    <link rel="shortcut icon" href="<%=request.getContextPath()%>/adminResources/image/favicon.png"/>
 </head>
 
 <body>
@@ -134,7 +134,7 @@
 
 
             </div>
-            <jsp:include page="footer.jsp"></jsp:include>
+            <jsp:include page="../user/footer.jsp"></jsp:include>
         </div>
     </div>
     <!-- content-wrapper ends -->
@@ -144,23 +144,23 @@
 <!-- partial -->
 <!-- container-scroller -->
 <!-- base:js -->
-<script src="adminResources/js/societyDetails.js"></script>
-<script src="adminResources/js/vendor.bundle.base.js"></script>
-<script src="adminResources/js/manageBlock.js"></script>
+<script src="<%=request.getContextPath()%>/adminResources/js/societyDetails.js"></script>
+<script src="<%=request.getContextPath()%>/adminResources/js/vendor.bundle.base.js"></script>
+<script src="<%=request.getContextPath()%>/adminResources/js/manageBlock.js"></script>
 <!-- endinject -->
 <!-- inject:js -->
-<script src="adminResources/js/off-canvas.js"></script>
-<script src="adminResources/js/hoverable-collapse.js"></script>
-<script src="adminResources/js/template.js"></script>
-<script src="adminResources/js/settings.js"></script>
-<script src="adminResources/js/todolist.js"></script>
+<script src="<%=request.getContextPath()%>/adminResources/js/off-canvas.js"></script>
+<script src="<%=request.getContextPath()%>/adminResources/js/hoverable-collapse.js"></script>
+<script src="<%=request.getContextPath()%>/adminResources/js/template.js"></script>
+<script src="<%=request.getContextPath()%>/adminResources/js/settings.js"></script>
+<script src="<%=request.getContextPath()%>/adminResources/js/todolist.js"></script>
 <!-- endinject -->
 <!-- plugin js for this page -->
-<script src="adminResources/js/jquery.dataTables.js"></script>
-<script src="adminResources/js/dataTables.bootstrap4.js"></script>
+<script src="<%=request.getContextPath()%>/adminResources/js/jquery.dataTables.js"></script>
+<script src="<%=request.getContextPath()%>/adminResources/js/dataTables.bootstrap4.js"></script>
 <!-- End plugin js for this page -->
 <!-- Custom js for this page-->
-<script src="adminResources/js/data-table.js"></script>
+<script src="<%=request.getContextPath()%>/adminResources/js/data-table.js"></script>
 <!-- End custom js for this page-->
 </body>
 </html>

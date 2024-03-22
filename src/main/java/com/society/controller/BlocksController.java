@@ -18,21 +18,21 @@ public class BlocksController {
     @Autowired
     BlockService blockService;
 
-    @GetMapping(value = "/blocks")
+    @GetMapping(value = "admin/blocks")
     public ModelAndView manageBlocks() {
         List<BlockVo> list = this.blockService.searchBlock();
         return new ModelAndView("admin/manageBlocks","blockVo", new BlockVo()).addObject("list",list);
     }
 
-    @PostMapping(value = "/blocks")
+    @PostMapping(value = "admin/blocks")
     public ModelAndView insertBlocks(@ModelAttribute BlockVo blockVo) {
         this.blockService.insertBlock(blockVo);
-        return new ModelAndView("redirect:/blocks");
+        return new ModelAndView("redirect:/admin/blocks");
     }
 
-    @GetMapping(value = "/deleteBlocks/{id}")
+    @GetMapping(value = "admin/deleteBlocks/{id}")
     public ModelAndView deleteBlocks(@PathVariable("id") int id) {
        this.blockService.deleteBlock(id);
-        return new ModelAndView("redirect:/blocks");
+        return new ModelAndView("redirect:/admin/blocks");
     }
 }

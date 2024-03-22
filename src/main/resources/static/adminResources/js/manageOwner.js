@@ -5,7 +5,6 @@ function blockChange(x) {
         if (htp.readyState == 4) {
             var blockObj = JSON.parse(htp.responseText);
             changeValues(blockObj)
-            console.log("block changed")
         }
     };
     htp.open("GET", "http://localhost:8088/searchForFloor/" + x.value, true);
@@ -16,7 +15,6 @@ function blockChange(x) {
 
 // Floor dropdown after ajax function blockChange(x) for form.
 function changeValues(obj) {
-    console.log(obj)
     document.getElementById("house-numbers-label").innerHTML = ""
     document.getElementById("house-numbers-ownwers").innerHTML = ""
     document.getElementById("number-of-house").value = obj.houseOnEachFloor;
@@ -34,7 +32,6 @@ function changeValues(obj) {
 // Ajax function after floor value changes for form.
 function bringOwnersToform(numberOfHouse, floor, blockNumber) {
     var blockName = document.getElementById("blockSearch").value;
-    console.log(`http://localhost:8088/searchOwners/${floor}/${blockNumber}`);
     var htp = new XMLHttpRequest();
     htp.onreadystatechange = function () {
         if (htp.readyState == 4) {
@@ -133,7 +130,6 @@ function blockChangeForTable(x) {
 
 // Floor dropdown after ajax function blockChangeForTable(x) for table.
 function changeFloorsForTable(obj) {
-    console.log(obj)
     document.getElementById("house-numbers-label").innerHTML = ""
     document.getElementById("house-numbers-ownwers").innerHTML = ""
     var numberOfHouse = document.getElementById("number-of-floors-search");
@@ -150,8 +146,6 @@ function changeFloorsForTable(obj) {
 function bringOwnersToTable(floor) {
     var blockName = document.getElementById("blockSearch").value;
     var floorNumber = floor.value;
-
-    console.log(`http://localhost:8088/searchOwners/${floorNumber}/${blockName}`);
     var htp = new XMLHttpRequest();
     htp.onreadystatechange = function () {
         if (htp.readyState == 4) {
@@ -169,7 +163,7 @@ function createTable(listOfOwners) {
     table.innerHTML = "";
     if (listOfOwners.length === 0) {
         table.innerHTML = `<tr>
-                              <td colspan="4" style="text-align: center; padding: 50px">No Owner Details Found For Block and Floor.</td>
+                              <td colspan="5" style="text-align: center; padding: 50px">No Owner Details Found For Block and Floor.</td>
                             </tr>`
     }
     for (var index = 0; index < listOfOwners.length; index++) {
@@ -179,7 +173,57 @@ function createTable(listOfOwners) {
         newTR.insertCell(1).innerHTML = `${listOfOwners[index].houseNo}`;
         newTR.insertCell(2).innerHTML = `${listOfOwners[index].ownerName}`;
         newTR.insertCell(3).innerHTML = `${listOfOwners[index].ownerEmail}`;
+        newTR.insertCell(4).innerHTML = `<button onclick="editOwner(${listOfOwners[index].id})" class="btn btn-primary"  data-toggle="modal"
+                        data-target="#exampleModal-3">Edit</button>`;
     }
+}
+
+//Ajax for editing Owner Name
+function editOwner(ownerId) {
+    var htp = new XMLHttpRequest();
+    htp.onreadystatechange = function () {
+        if (htp.readyState == 4) {
+            var ownerObj = JSON.parse(htp.responseText);
+            createEditOwnerForm(ownerObj)
+        }
+    };
+    htp.open("GET", `http://localhost:8088/findOwner/${ownerId}`, true);
+    htp.send();
+}
+
+var editOwnerObj;
+
+//Create Model For Owner Edit.
+function createEditOwnerForm(ownerObj) {
+    editOwnerObj = ownerObj;
+    document.getElementById("owner-edit-id").value = ownerObj.id;
+    document.getElementById("owner-edit-name").value = ownerObj.ownerName;
+    document.getElementById("owner-edit-email").value = ownerObj.ownerEmail;
+    document.getElementById("block").value = ownerObj.blockVo.id;
+    document.getElementById("floor").value = ownerObj.floorNo;
+    document.getElementById("block").innerHTML = ownerObj.blockVo.blockName;
+    document.getElementById("floor").innerHTML = ownerObj.floorNo;
+    document.getElementById("owner-edit-house-no").value = ownerObj.houseNo;
+}
+
+
+function updateOwnerObj() {
+    editOwnerObj.ownerName = document.getElementById("owner-edit-name").value;
+    editOwnerObj.ownerEmail = document.getElementById("owner-edit-email").value;
+    editOwnerObj.houseNo = document.getElementById("owner-edit-house-no").value;
+    updateOwner(editOwnerObj);
+}
+
+function updateOwner(ownerObj) {
+    var htp = new XMLHttpRequest();
+    htp.open("PUT", "http://localhost:8088/updateOwner", true);
+    htp.setRequestHeader("Content-Type", "application/json");
+    htp.onreadystatechange = function () {
+        if (htp.readyState == 4) {
+            bringOwnersToTable(document.getElementById("number-of-floors-search"));
+        }
+    };
+    htp.send(JSON.stringify(ownerObj));
 }
 
 // Emptying form after close button.
@@ -192,7 +236,7 @@ function emptyForm() {
     document.getElementById("submit-model").innerHTML = "Submit";
     document.getElementById("ModalLabel").innerHTML = "Add Owners"
     document.getElementById("house-numbers-label").innerHTML = "";
-    document.getElementById("number-of-house").value="- -"
-    document.getElementById("number-of-floors").innerHTML=" <option value=''>- -</option>";
-    document.getElementById("block-name-form").value="null";
+    document.getElementById("number-of-house").value = "- -"
+    document.getElementById("number-of-floors").innerHTML = " <option value=''>- -</option>";
+    document.getElementById("block-name-form").value = "null";
 }

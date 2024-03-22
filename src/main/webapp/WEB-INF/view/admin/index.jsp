@@ -11,17 +11,17 @@
 <title>Admin | Index</title>
 <!-- base:css -->
 <link rel="stylesheet"
-	href="adminResources/css/materialdesignicons.min.css">
-<link rel="stylesheet" href="adminResources/css/vendor.bundle.base.css">
+	href="<%=request.getContextPath()%>/adminResources/css/materialdesignicons.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/<%=request.getContextPath()%>/adminResources/css/vendor.bundle.base.css">
 <!-- endinject -->
 <!-- plugin css for this page -->
-<link rel="stylesheet" href="adminResources/css/jqvmap.min.css">
-<link rel="stylesheet" href="adminResources/css/flag-icon.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/adminResources/css/jqvmap.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/adminResources/css/flag-icon.min.css">
 <!-- End plugin css for this page -->
 <!-- inject:css -->
-<link rel="stylesheet" href="adminResources/css/style.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/adminResources/css/style.css">
 <!-- endinject -->
-<link rel="shortcut icon" href="adminResources/image/favicon.png" />
+<link rel="shortcut icon" href="<%=request.getContextPath()%>/adminResources/image/favicon.png" />
 </head>
 <body>
 	<div class="container-scroller">
@@ -56,7 +56,7 @@
 				<!-- content-wrapper ends -->
 				<!-- partial:partials/_footer.html -->
 
-				<jsp:include page="footer.jsp"></jsp:include>
+				<jsp:include page="../user/footer.jsp"></jsp:include>
 
 				<!-- partial -->
 			</div>
@@ -67,29 +67,29 @@
 	<!-- container-scroller -->
 
 	<!-- base:js -->
-	<script src="adminResources/js/vendor.bundle.base.js"></script>
+	<script src="<%=request.getContextPath()%>/adminResources/js/vendor.bundle.base.js"></script>
 	<!-- endinject -->
 	<!-- Plugin js for this page-->
-	<script src="adminResources/js/jquery.flot.js"></script>
-	<script src="adminResources/js/jquery.flot.pie.js"></script>
-	<script src="adminResources/js/jquery.flot.resize.js"></script>
-	<script src="adminResources/js/jquery.vmap.min.js"></script>
-	<script src="adminResources/js/jquery.vmap.world.js"></script>
-	<script src="adminResources/js/jquery.vmap.usa.js"></script>
-	<script src="adminResources/js/jquery.peity.min.js"></script>
-	<script src="adminResources/js/jquery.flot.dashes.js"></script>
+	<script src="<%=request.getContextPath()%>/adminResources/js/jquery.flot.js"></script>
+	<script src="<%=request.getContextPath()%>/adminResources/js/jquery.flot.pie.js"></script>
+	<script src="<%=request.getContextPath()%>/adminResources/js/jquery.flot.resize.js"></script>
+	<script src="<%=request.getContextPath()%>/adminResources/js/jquery.vmap.min.js"></script>
+	<script src="<%=request.getContextPath()%>/adminResources/js/jquery.vmap.world.js"></script>
+	<script src="<%=request.getContextPath()%>/adminResources/js/jquery.vmap.usa.js"></script>
+	<script src="<%=request.getContextPath()%>/adminResources/js/jquery.peity.min.js"></script>
+	<script src="<%=request.getContextPath()%>/adminResources/js/jquery.flot.dashes.js"></script>
 	<!-- End plugin js for this page-->
 	<!-- inject:js -->
-	<script src="adminResources/js/off-canvas.js"></script>
-	<script src="adminResources/js/hoverable-collapse.js"></script>
-	<script src="adminResources/js/template.js"></script>
-	<script src="adminResources/js/settings.js"></script>
-	<script src="adminResources/js/todolist.js"></script>
+	<script src="<%=request.getContextPath()%>/adminResources/js/off-canvas.js"></script>
+	<script src="<%=request.getContextPath()%>/adminResources/js/hoverable-collapse.js"></script>
+	<script src="<%=request.getContextPath()%>/adminResources/js/template.js"></script>
+	<script src="<%=request.getContextPath()%>/adminResources/js/settings.js"></script>
+	<script src="<%=request.getContextPath()%>/adminResources/js/todolist.js"></script>
 	<!-- endinject -->
 	<!-- plugin js for this page -->
 	<!-- End plugin js for this page -->
 	<!-- Custom js for this page-->
-	<script src="adminResources/js/dashboard.js"></script>
+	<script src="<%=request.getContextPath()%>/adminResources/js/dashboard.js"></script>
 	<!-- End custom js for this page-->
 </body>
 

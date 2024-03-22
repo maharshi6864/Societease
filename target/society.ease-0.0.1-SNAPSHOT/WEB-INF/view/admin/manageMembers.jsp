@@ -53,82 +53,125 @@
                         </button>
                     </div>
                     <div class="modal-body ">
-                        <div class="row">
-                            <div class="col-lg-3">
-                                <label class="col-form-label" for="member-form-name">Member Name : </label>
-                            </div>
-                            <div class="col-lg-3">
-                                <label class="col-form-label" for="member-form-phone">Member PhoneNo: </label>
-                            </div>
-                            <div class="col-lg-3 mb-1">
-                                <label class="col-form-label" for="member-form-email">Member Email Address: </label>
-                            </div>
-
-                            <div class="col-lg-3 mb-1">
-                                <label class="col-form-label" for="member-form-file">Member image file: </label>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-lg-3 ">
-                                <input class="form-control" placeholder="Type Member Name" id="member-form-name"/>
-                            </div>
-                            <div class="col-lg-3 ">
-                                <input
-                                        class="form-control" placeholder="Type Member Phone"
-                                        id="member-form-phone"/>
-                            </div>
-
-                            <div class="col-lg-3">
-                                <input
-                                        class="form-control" placeholder="Type Member Email Address"
-                                        id="member-form-email"/>
-                            </div>
-                            <div class="col-lg-2 ">
-                                <input
-                                        type="file"
-                                        class="form-control" placeholder="Type Member Email Address"
-                                        id="member-form-file"/>
-                            </div>
-                            <div class="col-lg-1 ">
-                                <button class="btn btn-primary" type="submit" value="Submit"
-                                        id="submit" onclick="addMemberToTable()">Add
-                                </button>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12" style="height:220px;max-height: 250px">
-                                <div class="table-responsive"
-                                     style=" max-height: 100% !important;scrollbar-width: none">
-                                    <table class="table table-bordered">
-                                        <thead>
-                                        <tr>
-                                            <th>Sr.No</th>
-                                            <th>Member Name</th>
-                                            <th>Member Email</th>
-                                            <th>Member Phone</th>
-                                            <th>Member Photo Image File</th>
-                                            <th>Edit Member</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody id="member-table">
-                                        <tr>
-                                            <td colspan="6" style="text-align: center; padding: 80px 0px">
-                                                - -
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
+                        <form method="post" action="saveMembers" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <label class="col-form-label" for="member-form-name">Block Name : </label>
+                                </div>
+                                <div class="col-lg-4">
+                                    <label class="col-form-label" for="member-form-phone">Floor No: </label>
+                                </div>
+                                <div class="col-lg-4 mb-1">
+                                    <label class="col-form-label" for="member-form-email">House No And Owner
+                                        Name: </label>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row" id="house-numbers-label"></div>
-                        <div class="row">
-                            <div class="col-lg-12" id="house-numbers-ownwers"></div>
-                        </div>
+                            <div class="row mb-3">
+                                <div class="col-lg-4 ">
+                                    <select
+                                            class="form-control"
+                                            name="blockId"
+                                            id="blockSearch"
+                                            onchange="blockChange(this)"
+                                    >
+                                        <option value="null" disabled selected>
+                                            Select Block Name
+                                        </option>
+                                        <c:forEach items="${blockList}" var="i" varStatus="">
+                                            <c:if test="${i.status}">
+                                                <option value="${i.id}">${i.blockName}</option>
+                                            </c:if>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                                <div class="col-lg-4 ">
+                                    <select
+                                            class="form-control"
+                                            id="number-of-floors"
+                                            name="floorNumber"
+                                            onchange="floorChange(this)"
+                                    >
+                                        <option value="">- -</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-lg-4">
+                                    <select
+                                            class="form-control"
+                                            id="owner-details"
+                                            name="ownerId"
+                                    >
+                                        <option value="null">- -</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <label class="col-form-label" for="member-form-name">Member Name : </label>
+                                </div>
+                                <div class="col-lg-3">
+                                    <label class="col-form-label" for="member-form-phone">Member PhoneNo: </label>
+                                </div>
+                                <div class="col-lg-3 mb-1">
+                                    <label class="col-form-label" for="member-form-email">Member Email Address: </label>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-lg-4 ">
+                                    <input class="form-control" placeholder="Type Member Name" id="member-form-name"/>
+                                </div>
+                                <div class="col-lg-3 ">
+                                    <input
+                                            class="form-control" placeholder="Type Member Phone"
+                                            id="member-form-phone"/>
+                                </div>
+
+                                <div class="col-lg-4">
+                                    <input
+                                            class="form-control" placeholder="Type Member Email Address"
+                                            id="member-form-email"/>
+                                </div>
+                                <div class="col-lg-1 ">
+                                    <button class="btn btn-primary" type="button"
+                                            id="submit" onclick="addMemberToTable()">Add
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12" style="height:220px;max-height: 250px">
+                                    <div class="table-responsive"
+                                         style=" max-height: 100% !important;scrollbar-width: none">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                            <tr>
+                                                <th>Sr.No</th>
+                                                <th>Member Name</th>
+                                                <th>Member Email Address</th>
+                                                <th>Member Phone No</th>
+                                                <th>Member Photo Image File</th>
+                                                <th>Action</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="member-table">
+                                            <tr>
+                                                <td colspan="6" style="text-align: center; padding: 80px 0px">
+                                                    - -
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" id="house-numbers-label"></div>
+                            <div class="row">
+                                <div class="col-lg-12" id="house-numbers-ownwers"></div>
+                            </div>
 
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-primary" type="submit" value="Submit"
+                        <button class="btn btn-primary" type="submit"
                                 id="submit-model">Submit
                         </button>
                         <button type="button" class="btn btn-light" data-dismiss="modal"
@@ -136,6 +179,7 @@
                         </button>
                     </div>
                 </div>
+                </form>
             </div>
         </div>
 
@@ -162,21 +206,29 @@
                         Members
                     </button>
                 </div>
-                <div class="row ">
-                    <div class="col-lg-3">
-                        <label for="blockSearch" class="col-form-label">Block
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label class="col-form-label" for=blockSearchForTable">Block Name : </label>
+                    </div>
+                    <div class="col-lg-4">
+                        <label class="col-form-label" for="floorSearchForTable">Floor No: </label>
+                    </div>
+                    <div class="col-lg-4">
+                        <label class="col-form-label" for="ownersForTable">House No And Owner
                             Name: </label>
                     </div>
-                    <div class="col-lg-3">
-                        <label for="number-of-floors-search" class="col-form-label">Floor
-                            No: </label>
-                    </div>
                 </div>
-                <div class="row  mb-2">
-                    <div class="col-lg-3">
-                        <select class="form-control" name="blockId" id="blockSearch"
-                                onchange="blockChangeForTable(this)">
-                            <option value="" disabled selected>Select Block Name</option>
+                <div class="row mb-2">
+                    <div class="col-lg-4 ">
+                        <select
+                                class="form-control"
+                                name="blockId"
+                                id="blockSearchForTable"
+                                onchange="blockChangeForTable(this)"
+                        >
+                            <option value="null" disabled selected>
+                                Select Block Name
+                            </option>
                             <c:forEach items="${blockList}" var="i" varStatus="">
                                 <c:if test="${i.status}">
                                     <option value="${i.id}">${i.blockName}</option>
@@ -184,12 +236,28 @@
                             </c:forEach>
                         </select>
                     </div>
-                    <div class="col-lg-3">
-                        <select class="form-control" id="number-of-floors-search"
-                                name="floorNumber" onchange="bringOwnersToTable(this)">
+                    <div class="col-lg-4 ">
+                        <select
+                                class="form-control"
+                                id="floorSearchForTable"
+                                name="floorNumber"
+                                onchange="floorChangeForTable(this)"
+                        >
                             <option value="">- -</option>
                         </select>
                     </div>
+
+                    <div class="col-lg-4">
+                        <select
+                                class="form-control"
+                                id="ownerSearchForTable"
+                                name="ownerId"
+                                onchange="ownerChangeForTable(this)"
+                        >
+                            <option value="null">- -</option>
+                        </select>
+                    </div>
+
                 </div>
                 <div class="card">
                     <div class="card-body">
@@ -200,14 +268,15 @@
                                         <thead>
                                         <tr>
                                             <th>Sr.No</th>
-                                            <th>House Number</th>
-                                            <th>Owner Name</th>
-                                            <th>Owner Email Address</th>
+                                            <th>Member Name</th>
+                                            <th>Member Phone Number</th>
+                                            <th>Member Email Address</th>
+                                            <th>Actions</th>
                                         </tr>
                                         </thead>
-                                        <tbody id="owner-table">
+                                        <tbody id="member-table-view">
                                         <tr>
-                                            <td colspan="4" style="text-align: center; padding: 50px">-
+                                            <td colspan="5" style="text-align: center; padding: 50px">-
                                                 -
                                             </td>
                                         </tr>

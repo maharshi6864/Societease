@@ -10,25 +10,19 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class SocietyController {
 
-    @Autowired
-    private SocietyService societyService;
+	@Autowired
+	private SocietyService societyService;
 
-    @GetMapping(value = "/society")
-    public ModelAndView manageSociety() {
+	@GetMapping(value = "admin/society")
+	public ModelAndView manageSociety() {
 
-        SocietyVo societyVo = this.societyService.search() != null ? this.societyService.search() : new SocietyVo();
-        return new ModelAndView("admin/societyDetails", "societyVo", societyVo);
-    }
+		SocietyVo societyVo = this.societyService.search() != null ? this.societyService.search() : new SocietyVo();
+		return new ModelAndView("admin/societyDetails", "societyVo", societyVo);
+	}
 
-    @PostMapping(value = "/insertSociety")
-    public ModelAndView insertSociety(@ModelAttribute SocietyVo societyVo) {
-        this.societyService.insertSociety(societyVo);
-        return new ModelAndView("redirect:society");
-    }
-
-    @GetMapping(value = "/review")
-	public ModelAndView review() {
-    	SocietyVo societyVo = this.societyService.search() != null ? this.societyService.search() : new SocietyVo();
-		return new ModelAndView("admin/societyDetails2", "societyVo", societyVo);
+	@PostMapping(value = "admin/insertSociety")
+	public ModelAndView insertSociety(@ModelAttribute SocietyVo societyVo) {
+		this.societyService.insertSociety(societyVo);
+		return new ModelAndView("redirect:society");
 	}
 }

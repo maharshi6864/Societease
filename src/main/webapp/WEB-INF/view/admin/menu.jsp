@@ -27,12 +27,5 @@
         <span class="menu-title">Manage Owners</span>
       </a>
     </li>
-    
-    <li class="nav-item">
-      <a class="nav-link" href="members">
-        <i class="mdi mdi-human-child menu-icon"></i>
-        <span class="menu-title">Manage Members</span>
-      </a>
-    </li>
   </ul>
 </nav>

@@ -45,11 +45,127 @@
         %>--%>
         <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 
-        <!-- Modal starts -->
+
+        <%--        Owner Edit Model Starts--%>
 
         <div
                 class="modal fade"
                 id="exampleModal-3"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="ModalLabel"
+                aria-hidden="true"
+
+        >
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ModalLabelEditOwner">Edit Owner</h5>
+                        <button
+                                type="button"
+                                class="close"
+                                data-dismiss="modal"
+                                aria-label="Close"
+                                onclick="emptyForm()"
+                        >
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class=" row">
+                            <input
+                                    type="hidden"
+                                    class="form-control"
+                                    id="owner-edit-id"
+                            />
+                            <div class="col-lg-6">
+                                <label for="owner-edit-block-no" class="col-form-label"
+                                >Block Name :
+                                </label>
+
+                               <select class="form-control" id="owner-edit-block-no">
+                                   <option id="block" disabled selected >- -</option>
+                               </select>
+                            </div>
+                            <div class="col-lg-6">
+                                <label for="owner-edit-floor-no" class="col-form-label"
+                                >Floor No :
+                                </label>
+
+                                <select class="form-control" id="owner-edit-floor-no">
+                                    <option id="floor" disabled selected >- -</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class=" row">
+                            <div class="col-lg-12">
+                                <label for="owner-edit-house-no" class="col-form-label"
+                                >Owner House No :
+                                </label>
+
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="owner-edit-house-no"
+                                        disabled="disabled"
+                                />
+                            </div>
+                        </div>
+                        <div class=" row">
+                            <div class="col-lg-12">
+                                <label for="owner-edit-name" class="col-form-label"
+                                >Owner Name :
+                                </label>
+
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="owner-edit-name"
+                                />
+                            </div>
+                        </div>
+                        <div class=" row">
+                            <div class="col-lg-12">
+                                <label for="owner-edit-email" class="col-form-label"
+                                >Owner Email Address :
+                                </label>
+
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="owner-edit-email"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary"
+                                type="submit"
+                                value="Submit"
+                                data-dismiss="modal"
+                                aria-label="Close"
+                                onclick="updateOwnerObj()"
+                                id="submit">Update
+                        </button>
+                        <button
+                                type="button"
+                                class="btn btn-light"
+                                data-dismiss="modal"
+                                onclick="emptyForm()"
+                        >
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%--        Owner Edit Model Ends--%>
+
+        <!--Owner Add Modal starts -->
+
+        <div
+                class="modal fade"
+                id="exampleModal-1"
                 tabindex="-1"
                 role="dialog"
                 aria-labelledby="ModalLabel"
@@ -173,7 +289,7 @@
                             type="button"
                             class="btn btn-primary btn-sm"
                             data-toggle="modal"
-                            data-target="#exampleModal-3"
+                            data-target="#exampleModal-1"
                     >
                         Add Owners
                     </button>
@@ -229,11 +345,12 @@
                                             <th>House Number</th>
                                             <th>Owner Name</th>
                                             <th>Owner Email Address</th>
+                                            <th>Edit</th>
                                         </tr>
                                         </thead>
                                         <tbody id="owner-table">
                                         <tr>
-                                            <td colspan="4" style="text-align: center; padding: 50px">- -</td>
+                                            <td colspan="5" style="text-align: center; padding: 50px">- -</td>
                                         </tr>
                                         </tbody>
                                     </table>

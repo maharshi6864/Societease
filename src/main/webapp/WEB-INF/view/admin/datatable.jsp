@@ -202,7 +202,7 @@
 				<!-- content-wrapper ends -->
 				<!-- partial:../../partials/_footer.html -->
 				
-				<jsp:include page="footer.jsp"></jsp:include>
+				<jsp:include page="../user/footer.jsp"></jsp:include>
 				
 				<!-- partial -->
 			</div>

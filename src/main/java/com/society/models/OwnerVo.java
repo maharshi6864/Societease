@@ -34,6 +34,11 @@ public class OwnerVo {
     @JoinColumn(name = "blockId")
     private BlockVo blockVo;
 
+    @ManyToOne
+    @JoinColumn(name = "loginId")
+    private LoginVo loginVo;
+
+
     public int getId() {
         return id;
     }
@@ -82,4 +87,11 @@ public class OwnerVo {
         this.blockVo = blockVo;
     }
 
+    public LoginVo getLoginVo() {
+        return loginVo;
+    }
+
+    public void setLoginVo(LoginVo loginVo) {
+        this.loginVo = loginVo;
+    }
 }
