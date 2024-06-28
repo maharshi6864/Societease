@@ -18,4 +18,6 @@ public interface MemberDao {
     ArrayList<MemberVo> getAllMembers();
 
     ArrayList<MemberVo> getMemberByOwnerId(int ownerId);
+
+    List<MemberVo> getMemberByEmail(String email);
 }

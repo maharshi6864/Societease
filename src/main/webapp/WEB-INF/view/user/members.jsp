@@ -26,6 +26,23 @@
     <link rel="shortcut icon"
           href="<%=request.getContextPath()%>/adminResources/image/favicon.png"/>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/adminResources/css/dropify.min.css">
+    <link rel="stylesheet"
+          href="<%=request.getContextPath()%>/adminResources/css/custom/memberValidation.css"/>
+          <style>input[type=file]::file-selector-button {
+            margin-right: 20px;
+            border: none;
+            background: #7571f9;
+            padding: 0.45rem 1.25rem;
+            color: #fff;
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: background .2s ease-in-out;
+          }
+          
+          input[type=file]::file-selector-button:hover {
+            background: #514cf7;
+          }</style>
 </head>
 
 <body>
@@ -121,57 +138,62 @@
                     <div class="modal-header">
                         <h5 class="modal-title" id="ModalLabel">Add Members</h5>
                         <button type="button" class="close" data-dismiss="modal"
-                                aria-label="Close" onclick="emptyForm()">
+                                aria-label="Close" onclick="emptyAddMemberForm()">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body ">
                         <form method="post" action="saveMembers"
                               enctype="multipart/form-data"
-                              onsubmit="return checkAllTheAddedMembers();">
-                            <div class="row">
+                              onsubmit="return false;">
+                            <div class="row mb-3">
                                 <div class="col-lg-4">
                                     <label class="col-form-label" style="font-weight: 700" for="member-form-name">Member
                                         Name : </label>
+                                        <input class="form-control"
+                    
+                                           placeholder="Type Member Name"
+                                           id="member-form-name" />
+
+                             <span id="memberName1-warning" style="color: #dc3545;font-size:12px;display: none">Please Enter Member Name !</span>
+                             <span id="memberName2-warning" style="color: #dc3545;font-size:12px;display: none">Please Enter Valid Member Name!</span>
+                             
                                 </div>
                                 <div class="col-lg-4">
                                     <label class="col-form-label" style="font-weight: 700" for="member-form-phone">Member
                                         PhoneNo: </label>
+                                        
+                                    <input class="form-control" placeholder="Type Member Phone"
+                                    id="member-form-phone"/>
+                                    
+                                 <span id="memberPhone1-warning" style="color: #dc3545;font-size:12px;display: none">Please Enter Member Phone no !</span>
+                                 <span id="memberPhone2-warning" style="color: #dc3545;font-size:12px;display: none">Please Enter Valid Member Phone no !</span>
                                 </div>
                                 <div class="col-lg-3 mb-1">
                                     <label class="col-form-label" style="font-weight: 700" for="member-form-email">Member
                                         Email Address: </label>
+                                        <div class="inputcontainer">
+                                            <input type="text" placeholder="Type Member Email Address" 
+                                            id="member-form-email" class="form-control used-email" placeholder="type me"/>
+                                            <div class="icon-container"  id="email-inp-loader">
+                                              <i class="loader"></i>
+                                            </div>
+                                          </div>
+                                        <span id="memberEmail1-warning" style="color: #dc3545;font-size:12px;display: none">Please Enter Member Email !</span>
+                                        <span id="memberEmail2-warning" style="color: #dc3545;font-size:12px;display: none">Please Enter Valid Email Address !</span>
+                                        <span id="memberEmail3-warning" style="color: #dc3545;font-size:12px;display: none">Email Entered is already in use !</span>
+                                 
                                 </div>
-                                <div class="col-lg-4">
-                                    <input class="form-control" placeholder="Type Member Name"
-                                           id="member-form-name"/>
-                                    <span id="memberName1-warning" style="color: #dc3545;font-size:12px;display: none">Please Enter Member Name !</span>
-                                    <span id="memberName2-warning" style="color: #dc3545;font-size:12px;display: none">Please Enter Valid Member Name!</span>
-                                </div>
-                                <div class="col-lg-4">
-                                    <input class="form-control" placeholder="Type Member Phone"
-                                           id="member-form-phone"/>
-                                    <span id="memberPhone1-warning" style="color: #dc3545;font-size:12px;display: none">Please Enter Member Phone no !</span>
-                                    <span id="memberPhone2-warning" style="color: #dc3545;font-size:12px;display: none">Please Enter Valid Member Phone no !</span>
-                                </div>
-                                <div class="col-lg-3">
-                                    <input class="form-control"
-                                           placeholder="Type Member Email Address"
-                                           id="member-form-email" onfocus="checkForDuplicateEmail()"/>
-                                    <span id="memberEmail1-warning" style="color: #dc3545;font-size:12px;display: none">Please Enter Member Email !</span>
-                                    <span id="memberEmail2-warning" style="color: #dc3545;font-size:12px;display: none">Please Enter Valid Email Address !</span>
-                                    <span id="memberEmail3-warning" style="color: #dc3545;font-size:12px;display: none">Email Entered is already in use !</span>
-                                </div>
-                                <div class="col-lg-1 mb-2">
+                                <div class="col-lg-1 " style="padding-top: 1.7rem;">
                                     <button class="btn btn-primary" type="button" style="padding: 0.45rem 1.25rem;"
                                             id="add-member-submit" onclick="addMemberToTable()">Add
                                     </button>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-12" style="height: 220px; max-height: 250px">
+                                <div class="col-12" style="height: 200px; max-height: 220px">
                                     <div class="table-responsive"
-                                         style="max-height: 100% !important; scrollbar-width: none">
+                                         style="max-height: 100% !important; scrollbar-width: thin">
                                         <table class="table table-bordered">
                                             <thead>
                                             <tr>
@@ -184,7 +206,7 @@
                                             </tr>
                                             </thead>
                                             <tbody id="member-table">
-
+                                                    <tr><td colspan="6"  ><div style="display: flex; justify-content: center; align-items: center; padding: 5rem 0rem;"><p> Add Memebers</p></div></td></tr> 
                                             </tbody>
                                         </table>
                                     </div>
@@ -196,11 +218,11 @@
                             </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-primary" type="submit" onclick=""
+                        <button class="btn btn-primary" type="submit" onclick="checkMemberDetialsInTable()"
                                 id="submit-model">Submit
                         </button>
                         <button type="button" class="btn btn-light" data-dismiss="modal"
-                                onclick="emptyAddMemberForm">Close
+                                onclick="emptyAddMemberForm()">Close
                         </button>
                     </div>
                 </div>
@@ -231,8 +253,7 @@
 
                         <button type="button" class="btn btn-primary btn-sm"
                                 data-toggle="modal" data-target="#exampleModal-3"
-                                style="padding: 0.282rem 1rem !important; height: 2.55rem"
-                                onclick="checkForDuplicateEmail()">Add Members
+                                style="padding: 0.282rem 1rem !important; height: 2.55rem">Add Members
                         </button>
                     </div>
                 </div>
@@ -346,18 +367,18 @@
     <script
             src="<%=request.getContextPath()%>/adminResources/js/dropify.js"></script>
 <script>
-    (function ($) {
-        'use strict';
-        $(function () {
-            $('.file-upload-browse').on('click', function () {
-                var file = $(this).parent().parent().parent().find('.file-upload-default');
-                file.trigger('click');
-            });
-            $('.file-upload-default').on('change', function () {
-                $(this).parent().find('.form-control').val($(this).val().replace(/C:\\fakepath\\/i, ''));
-            });
-        });
-    })(jQuery);
+    // (function ($) {
+    //     'use strict';
+    //     $(function () {
+    //         $('.file-upload-browse').on('click', function () {
+    //             var file = $(this).parent().parent().parent().find('.file-upload-default');
+    //             file.trigger('click');
+    //         });
+    //         $('.file-upload-default').on('change', function () {
+    //             $(this).parent().find('.form-control').val($(this).val().replace(/C:\\fakepath\\/i, ''));
+    //         });
+    //     });
+    // })(jQuery);
 </script>
 <!-- End custom js for this page-->
 </body>

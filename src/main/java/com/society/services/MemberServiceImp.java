@@ -18,9 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Service
 @Transactional
@@ -36,7 +34,8 @@ public class MemberServiceImp implements MemberService {
     private OwnerService ownerService;
 
     @Override
-    public void addMembers(int ownerId, String[] memberName, String[] memberPhoneNo, String[] memberEmail, List<MultipartFile> files, HttpServletRequest request) {
+    public void addMembers(int ownerId, String[] memberName, String[] memberPhoneNo, String[] memberEmail,
+            List<MultipartFile> files, HttpServletRequest request) {
 
         LoginVo loginVo = this.loginService.getCurrentUser();
         OwnerVo ownerVo = this.ownerService.getCurrentOwner();
@@ -49,7 +48,8 @@ public class MemberServiceImp implements MemberService {
             try {
 
                 byte barr[] = files.get(index).getBytes();
-                BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new FileOutputStream(filePath + fileName));
+                BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(
+                        new FileOutputStream(filePath + fileName));
                 bufferedOutputStream.write(barr);
                 bufferedOutputStream.flush();
                 bufferedOutputStream.close();
@@ -110,21 +110,24 @@ public class MemberServiceImp implements MemberService {
 
         if (!fileName.equals("")) {
             try {
-                //Deleting Old File
+                // Deleting Old File
                 MemberVo oldMemberObj = this.findMemberById(memberVo.getId());
-                String filePath = request.getSession().getServletContext().getRealPath("/") + "//documents//memberPhotos//" + oldMemberObj.getFileName();
+                String filePath = request.getSession().getServletContext().getRealPath("/")
+                        + "//documents//memberPhotos//" + oldMemberObj.getFileName();
                 File file = new File(filePath);
                 file.delete();
             } catch (Exception e) {
                 System.out.println("Member Image Was Not updated!!");
             }
             try {
-//               Saving new File
-                String filePath = request.getSession().getServletContext().getRealPath("/") + "//documents//memberPhotos//";
+                // Saving new File
+                String filePath = request.getSession().getServletContext().getRealPath("/")
+                        + "//documents//memberPhotos//";
                 memberVo.setFileName(fileName);
                 try {
                     byte barr[] = memberFile.getBytes();
-                    BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new FileOutputStream(filePath + fileName));
+                    BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(
+                            new FileOutputStream(filePath + fileName));
                     bufferedOutputStream.write(barr);
                     bufferedOutputStream.flush();
                     bufferedOutputStream.close();
@@ -147,12 +150,25 @@ public class MemberServiceImp implements MemberService {
     @Override
     public List<String> getAllMembersMails() {
         List<MemberVo> list = this.getAllMembers();
-        List<String> memberMails=new ArrayList<>();
+        List<String> memberMails = new ArrayList<>();
         for (MemberVo memberVo : list) {
             memberMails.add(memberVo.getMemberEmail());
         }
         return memberMails;
     }
 
+    @Override
+    public Map checkForMemberDuplicateMail(String email) {
+        Map map = new HashMap<>();
+        map.put("email", email);
+        List<MemberVo> list = this.memberDao.getMemberByEmail(email);
+        System.out.println(list.toString());
+        if (list.isEmpty()) {
+            map.put("availablity", true);
+        } else {
+            map.put("availablity", false);
+        }
+        return map;
+    }
 
 }

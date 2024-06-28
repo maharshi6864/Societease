@@ -2,6 +2,7 @@ package com.society.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import com.society.models.MemberVo;
 import com.society.services.MemberService;
@@ -41,7 +42,7 @@ public class MembersController {
         return this.memberService.findMemberById(memberId);
     }
 
-//	public MemberVo searchMember
+    // public MemberVo searchMember
 
     @GetMapping(value = "user/deleteMember/{id}")
     public ModelAndView deleteMember(@PathVariable("id") int id) {
@@ -50,14 +51,14 @@ public class MembersController {
     }
 
     @PostMapping(value = "user/updateMember")
-    public ModelAndView updateMember(HttpServletRequest request,MultipartFile memberFile) {
-        this.memberService.updateMember(request,memberFile);
+    public ModelAndView updateMember(HttpServletRequest request, MultipartFile memberFile) {
+        this.memberService.updateMember(request, memberFile);
         return new ModelAndView("redirect:/user/members");
     }
 
-    @RequestMapping(value = "user/getAllMembersMails", method = RequestMethod.GET)
-    public List<String> getAllMembersMails() {
-        return this.memberService.getAllMembersMails();
+    @RequestMapping(value = "user/checkForDuplicateMail", method = RequestMethod.GET)
+    public Map getAllMembersMails(@RequestParam String email) {
+        return this.memberService.checkForMemberDuplicateMail(email);
     }
 
 }

@@ -94,7 +94,7 @@ function getOwnerDetails() {
     htp.send();
 }
 
-setInterval(getNotifications, 5000)
+setInterval(getNotifications, 50000)
 
 window.addEventListener("load", function () {
     getNotifications();

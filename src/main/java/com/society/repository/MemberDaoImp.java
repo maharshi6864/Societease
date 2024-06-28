@@ -95,4 +95,19 @@ public class MemberDaoImp implements MemberDao {
         }
         return (ArrayList<MemberVo>) list;
     }
+
+    @Override
+    public List<MemberVo> getMemberByEmail(String email) {
+        List<MemberVo> list = new ArrayList<MemberVo>();
+        try {
+            Session session = sessionFactory.getCurrentSession();
+            Query query = session.createQuery("from MemberVo where memberEmail='" + email+"'");
+            list = (List<MemberVo>) query.list();
+            session.clear();
+            session.flush();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return (ArrayList<MemberVo>) list;
+    }
 }
