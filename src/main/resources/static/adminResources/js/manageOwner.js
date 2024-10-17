@@ -328,7 +328,7 @@ function openMemberInfo(memberObj) {
     if (memberObj.length === 0) {
         table.innerHTML = `<tr>
 <td colspan="4" class="text-center">
-<div class="d-flex justify-content-center align-items-center flex-column"><i class="mdi mdi-account-multiple" style="color: #7571f9 !important; margin: 0px !important; font-size: 170px"></i><p  >No Member Info For This Owner.</p></div>
+<div class="d-flex justify-content-center align-items-center flex-column" style="margin-top: 7% !important;"><i class="mdi mdi-account-multiple" style="color: #7571f9 !important; margin: 0px !important; font-size: 170px;line-height: 0.5"></i><p  >No Member Info For This Owner.</p></div>
 </td>
 </tr>`;
     }
@@ -381,7 +381,7 @@ function createVehicleInfoTable(vehicleObjs, parkingAllotmentList) {
     console.log(parkingAllotmentList)
     let table = document.getElementById("vehicle-info");
     if (vehicleObjs.length === 0) {
-        table.innerHTML = `<tr><td colspan="5" class="text-center pt-5">
+        table.innerHTML = `<tr><td colspan="6" class="text-center pt-5">
         <i class=" mdi mdi-car" style="font-size: 60px !important;color: #7571f9 !important;"></i>
         <p>No Vehicle For this Owner.</p>
 

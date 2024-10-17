@@ -190,7 +190,7 @@
                     </div>
                     <div class="modal-body p-1 pt-2">
                         <div class="row">
-                            <div class="col-12" style="height: 250px; max-height: 500px">
+                            <div class="col-12" style="height: 330px; max-height: 500px">
                                 <div class="table-responsive"
                                      style="max-height: 100% !important; scrollbar-width: none">
                                     <table class="table ">

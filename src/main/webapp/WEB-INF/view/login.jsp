@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html>
@@ -44,11 +45,15 @@
                                            id="password" placeholder="Password" >
 
                                 </div>
+                                <c:if test="${param.error == 'true'}">
+                                    <div class="error-message" style="color:#f10075;">Invalid username or password. Please try again.</div>
+                                </c:if>
+
                                 <div class="mt-3">
                                     <input type="submit" value="SIGN IN" onclick=""
                                            class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">
                                     <div class="mt-1 d-flex justify-content-end align-items-center">
-                                        <a href="#" class="auth-link text-black">Forgot password?</a>
+                                        <a href="#" class="auth-link">Forgot password?</a>
                                     </div>
                                 </div>
 

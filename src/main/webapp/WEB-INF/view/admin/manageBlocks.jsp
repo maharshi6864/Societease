@@ -260,43 +260,40 @@
                     <div class="card-body pt-2 pb-2 ">
                         <div class="row">
                             <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
+                            <!-- Check if the list is empty -->
+                            <c:if test="${empty list}">
+                                <div class="col-12 text-center" style="min-height: 500px !important;display: flex;align-items: center;justify-content: center">
+                                    <h2>No blocks available</h2>
+                                </div>
+                            </c:if>
+
+                            <!-- Loop through the list if it's not empty -->
                             <c:forEach items="${list}" var="i" varStatus="j">
-                                <div class="col-md-3 col-sm-6 border text-center border border-0 p-2  ">
+                                <div class="col-md-3 col-sm-6 border text-center border border-0 p-2">
                                     <div class="border border-3 rounded rounded-5">
                                         <div>
                                             <a href="owners" class="nav-links owner-block-link"
-                                               onclick="saveOwnerDisplayDetails(${i.id})"><h1
-                                                    style="font-size: 130px !important;">${i.blockName}</h1></a>
+                                               onclick="saveOwnerDisplayDetails(${i.id})">
+                                                <h1 style="font-size: 130px !important;">${i.blockName}</h1>
+                                            </a>
                                         </div>
                                         <div class="mb-3 d-flex justify-content-center">
                                             <table class="ml-3">
                                                 <tr>
-                                                    <td class="text-left" style="padding: 0rem 0.5rem !important;">
-                                                        Floors
-                                                    </td>
-                                                    <td class="text-left" style="padding: 0rem 0.5rem !important;">:
-                                                    </td>
-                                                    <td class="text-left"
-                                                        style="padding: 0rem 0.5rem !important;">${i.noOfFloors}</td>
+                                                    <td class="text-left" style="padding: 0rem 0.5rem !important;">Floors</td>
+                                                    <td class="text-left" style="padding: 0rem 0.5rem !important;">:</td>
+                                                    <td class="text-left" style="padding: 0rem 0.5rem !important;">${i.noOfFloors}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="text-left" style="padding: 0rem 0.5rem !important;">
-                                                        Houses
-                                                    </td>
-                                                    <td class="text-left" style="padding: 0rem 0.5rem !important;">
-                                                        :
-                                                    </td>
+                                                    <td class="text-left" style="padding: 0rem 0.5rem !important;">Houses</td>
+                                                    <td class="text-left" style="padding: 0rem 0.5rem !important;">:</td>
                                                     <td class="text-left" style="padding: 0rem 0.5rem !important;">
                                                             ${i.houseOnEachFloor}
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="text-left" style="padding: 0rem 0.5rem !important;">
-                                                        Type(BHK)
-                                                    </td>
-                                                    <td class="text-left" style="padding: 0rem 0.5rem !important;">
-                                                        :
-                                                    </td>
+                                                    <td class="text-left" style="padding: 0rem 0.5rem !important;">Type(BHK)</td>
+                                                    <td class="text-left" style="padding: 0rem 0.5rem !important;">:</td>
                                                     <td class="text-left" style="padding: 0rem 0.5rem !important;">
                                                             ${i.typeOfHouse}
                                                     </td>
@@ -305,13 +302,12 @@
                                         </div>
                                         <div class="mb-3">
                                             <button class="btn btn-outline-info atc-btn" data-toggle="modal"
-                                                    data-target="#exampleModal-3" onclick=" getBlock(${i.id})">
+                                                    data-target="#exampleModal-3" onclick="getBlock(${i.id})">
                                                 Edit
                                             </button>
                                             <a href="deleteBlocks/${i.id}">
                                                 <button class="btn btn-outline-danger atc-btn" data-toggle="modal"
-                                                        data-target="#exampleModal-3"
-                                                        onclick="editBlock(this)">
+                                                        data-target="#exampleModal-3" onclick="editBlock(this)">
                                                     Delete
                                                 </button>
                                             </a>
@@ -322,6 +318,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
             <jsp:include page="../user/footer.jsp"></jsp:include>
         </div>

@@ -97,6 +97,7 @@
 
 								<div class="card-body p-0">
 									<div class="row p-0  pr-2 pl-2" style="">
+									<%-- high chart --%>
 										<div class="col-md-8  border-right pt-3 border-bottom"
 											id="container">
 											<input type="hidden" name="yvalue" /> <input type="hidden"
