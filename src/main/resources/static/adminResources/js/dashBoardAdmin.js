@@ -16,7 +16,6 @@ function createBlockSelect() {
     htp.onreadystatechange = function () {
         if (htp.readyState === 4) {
             let blockList = JSON.parse(htp.responseText);
-            console.log(blockList);
             for (let i = 0; i < blockList.length; i++) {
                 let option = document.createElement("option");
                 option.value = `${blockList[i].id}`
@@ -38,7 +37,6 @@ function getOwnerPaidAndUnpaid() {
 
     let container = document.getElementById("container");
     getCurrentBlockDetails(block)
-    console.log(block)
     let htp = new XMLHttpRequest();
     htp.onreadystatechange = function () {
         if (htp.readyState === 4) {
@@ -116,7 +114,6 @@ function graph() {
 }
 
 function getCurrentBlockDetails(blockId) {
-    console.log(blockId);
     let htp = new XMLHttpRequest();
     htp.onreadystatechange = function () {
         if (htp.readyState === 4) {
@@ -130,7 +127,6 @@ function getCurrentBlockDetails(blockId) {
 
 function displayDetails(blockobj)
 {
-    console.log(blockobj);
     document.getElementById("total-owners").innerHTML=blockobj.owners;
     document.getElementById("unsold-house").innerHTML=blockobj.unsoldHouses;
     document.getElementById("total-houses").innerHTML=blockobj.houses;
@@ -151,7 +147,6 @@ function getDasDetails()
     htp.send();
 }
 function displayDasDetails(dasDetails){
-    console.log(dasDetails);
     document.getElementById("circulars-display").innerHTML=dasDetails.totalCirculars;
     document.getElementById("complains-display").innerHTML=dasDetails.totalComplains;
     document.getElementById("feedbacks-display").innerHTML=dasDetails.totalFeedbacks;

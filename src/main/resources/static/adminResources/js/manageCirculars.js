@@ -40,16 +40,39 @@ function openCircularEdit(complainObj) {
 }
 
 function emptyCircularForm() {
+    let circularCategory = document.getElementById("circular-category");
+    let circularDescription = document.getElementById("circular-description");
+    let circularFrom = document.getElementById("circular-from-date");
+    let circularTo = document.getElementById("circular-to-date");
+    let circularLabelBox = document.getElementById("circularFileAttachmentsLabelBox");
+    let circularFile = document.getElementById("circularFileAttachments");
+    circularFile.value="";
     document.getElementById("circular-id").value = 0;
-    document.getElementById("circular-category").value = "none"
-    document.getElementById("circular-description").value = "";
-    document.getElementById("circular-from-date").value = "";
-    document.getElementById("circular-to-date").value = "";
-    document.getElementById("ModalLabelEdit").innerHTML = "Add Circular"
-    document.getElementById("submit").innerHTML = "Submit"
-    document.getElementById("checkbox-label").innerHTML = "Notify Owner On Adding Of New Circular"
-    document.getElementById("circular-form").setAttribute("onsubmit", "return validateAddCircularForm();")
+    circularCategory.value = "none";
+    circularDescription.value = "";
+    circularFrom.value = "";
+    circularTo.value = "";
+    document.getElementById("ModalLabelEdit").innerHTML = "Add Circular";
+    document.getElementById("submit").innerHTML = "Submit";
+    document.getElementById("checkbox-label").checked=false;
+    document.getElementById("circular-form").setAttribute("onsubmit", "return validateAddCircularForm();");
+    // circularLabelBox.value = "";
+    circularCategory.classList.remove("is-invalid");
+    circularCategory.classList.remove("is-valid");
+    circularCategory.style.backgroundPosition = "";
+    circularCategory.style.border = "";
+    document.querySelector("#circularCategory1-warning").style.display = "none";
+    circularCategory.setAttribute("onchange", "");
+    document.querySelector("#description1-warning").style.display = "none";
+    document.querySelector("#description2-warning").style.display = "none";
+    circularDescription.classList.remove("is-invalid");
+    circularDescription.classList.remove("is-valid");
+    circularDescription.setAttribute("onkeyup", "");
+    circularLabelBox.classList.remove("is-invalid");
+    circularLabelBox.classList.remove("is-valid");
+    document.querySelector("#file1-warning").style.display = "none";
 }
+
 
 function validateAddCircularForm() {
     let circularCategory = document.getElementById("circular-category");

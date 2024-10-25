@@ -67,7 +67,7 @@ function displayDetails(maintenanceObjs) {
     if (maintenanceObjs.length === 0) {
         table.innerHTML = `<tr>
 <td colspan="4" class="text-center">
-<div class="d-flex justify-content-center align-items-center flex-column" style="padding: 100px"><p  >No Maintenance Details Found For selected Year And House Type.</p></div>
+<div class="d-flex justify-content-center align-items-center flex-column" style="padding: 181px"><p  >No Maintenance Details Found For selected Year And House Type.</p></div>
 </td>
 </tr>`;
     }

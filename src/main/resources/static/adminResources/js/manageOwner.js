@@ -193,7 +193,7 @@ function createTable(listOfOwners) {
     var table = document.querySelector("#owner-table");
     table.innerHTML = ``;
     if (listOfOwners.length === 0) {
-        table.innerHTML = `<tr><td colspan="8" class="text-center"><div class="d-flex justify-content-center align-items-center flex-column" style="height: 210px !important;"><i class="mdi mdi-account-multiple" style="color: #7571f9 !important; margin: 0px !important; font-size: 130px !important;"></i><p  >No Owner Found For Selected Block and Floor.</p></div></td></tr>`
+        table.innerHTML = `<tr><td colspan="8" class="text-center"><div class="d-flex justify-content-center align-items-center flex-column" style="height: 210px !important;"><i class="mdi mdi-account-multiple" style="color: #7571f9 !important; margin: 0px !important; font-size: 130px !important;line-height: 0.5;"></i><p>No Owner Found For Selected Block and Floor.</p></div></td></tr>`
     }
     for (var index = 0; index < listOfOwners.length; index++) {
         var newTR = table.insertRow(-1);
@@ -279,7 +279,7 @@ function emptyAddOwnerForm() {
     document.getElementById("house-numbers-label").innerHTML = "";
     document.getElementById("number-of-house").value = "- -"
     document.getElementById("number-of-floors").innerHTML = " <option value=''>- -</option>";
-    document.getElementById("block-name-form").value = "null";
+    document.getElementById("block-name-form").value = "none";
 }
 
 function displayOwnerForFirst() {
