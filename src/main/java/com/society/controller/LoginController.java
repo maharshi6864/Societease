@@ -61,19 +61,16 @@ public class LoginController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView load() {
-
 		return new ModelAndView("login");
 	}
 
 	@RequestMapping(value = "/403", method = RequestMethod.GET)
 	public ModelAndView load403() {
-
 		return new ModelAndView("login");
 	}
 
 	@RequestMapping(value = "/error", method = RequestMethod.GET)
 	public ModelAndView error() {
-
 		return new ModelAndView("login");
 	}
 

@@ -7,58 +7,81 @@ import java.security.acl.Owner;
 @Table(name = "maintenancepaidvo")
 public class MaintenancePaidVo {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private int id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
+	private int id;
 
-    private String year;
+	private String year;
 
-    private String month;
+	private String month;
 
-    private boolean maintenanceStatus = false;
+	private String paymentType;
 
-    @ManyToOne
-    @JoinColumn(name = "ownerId")
-    private OwnerVo ownerVo;
+	private boolean maintenanceStatus;
 
-    public int getId() {
-        return id;
-    }
+	@ManyToOne
+	@JoinColumn(name = "ownerId")
+	private OwnerVo ownerVo;
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	@ManyToOne
+	@JoinColumn(name = "transactionId")
+	private TransactionVo transactionVo;
 
-    public String getYear() {
-        return year;
-    }
+	public int getId() {
+		return id;
+	}
 
-    public void setYear(String year) {
-        this.year = year;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public String getMonth() {
-        return month;
-    }
+	public String getYear() {
+		return year;
+	}
 
-    public void setMonth(String month) {
-        this.month = month;
-    }
+	public void setYear(String year) {
+		this.year = year;
+	}
 
-    public boolean isMaintenanceStatus() {
-        return maintenanceStatus;
-    }
+	public String getMonth() {
+		return month;
+	}
 
-    public void setMaintenanceStatus(boolean maintenanceStatus) {
-        this.maintenanceStatus = maintenanceStatus;
-    }
+	public void setMonth(String month) {
+		this.month = month;
+	}
 
-    public OwnerVo getOwnerVo() {
-        return ownerVo;
-    }
+	public String getPaymentType() {
+		return paymentType;
+	}
 
-    public void setOwnerVo(OwnerVo ownerVo) {
-        this.ownerVo = ownerVo;
-    }
+	public void setPaymentType(String paymentType) {
+		this.paymentType = paymentType;
+	}
+
+	public boolean isMaintenanceStatus() {
+		return maintenanceStatus;
+	}
+
+	public void setMaintenanceStatus(boolean maintenanceStatus) {
+		this.maintenanceStatus = maintenanceStatus;
+	}
+
+	public OwnerVo getOwnerVo() {
+		return ownerVo;
+	}
+
+	public void setOwnerVo(OwnerVo ownerVo) {
+		this.ownerVo = ownerVo;
+	}
+
+	public TransactionVo getTransactionVo() {
+		return transactionVo;
+	}
+
+	public void setTransactionVo(TransactionVo transactionVo) {
+		this.transactionVo = transactionVo;
+	}
+
 }

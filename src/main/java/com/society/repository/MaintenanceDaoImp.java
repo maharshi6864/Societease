@@ -60,7 +60,7 @@ public class MaintenanceDaoImp implements MaintenanceDao {
         MaintenanceVo maintenanceVo = null;
         try {
             Session session = sessionFactory.getCurrentSession();
-            Query query = session.createQuery("from MaintenanceVo where month='" + month + "' and year='" + year + "' and houseType=" + houseType);
+            Query query = session.createQuery("from MaintenanceVo where month='" + month + "' and year='" + year + "' and houseType='" + houseType+"'");
             list = (List<MaintenanceVo>) query.list();
             maintenanceVo = list.get(0);
         } catch (Exception e) {

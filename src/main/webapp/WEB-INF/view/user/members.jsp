@@ -125,7 +125,7 @@ input[type=file]::file-selector-button:hover {
 				</div>
 			</div>
 
-			<%--        Member edit Model End--%>
+			<%-- Member edit Model End--%>
 
 
 			<%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
@@ -276,6 +276,12 @@ input[type=file]::file-selector-button:hover {
 
 
 						<%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+						<c:if test="${empty memberList}">
+							<div class="d-flex justify-content-center align-items-center flex-column" style="height:60vh !important;">
+								<i class="mdi mdi-account-multiple" style="color: #7571f9 !important; margin: 0px !important; font-size: 170px;line-height: 0.5"></i>
+								<p  >No Member Added.</p>
+							</div>                        
+						</c:if>
 						<c:forEach items="${memberList}" var="i" varStatus="j">
 
 							<div class="card">

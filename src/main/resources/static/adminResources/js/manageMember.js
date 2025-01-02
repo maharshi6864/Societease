@@ -191,7 +191,6 @@ async function confirmEmail(email) {
 }
 
 
-
 function emptyAddMemberForm() {
     document.querySelector("#member-table").innerHTML = `<tr><td colspan="6"><div style="display: flex;justify-content:center; align-items: center; padding: 5rem 0rem;"><p> Add Memebers</p></div></td></tr>`;
     emptyAddForm();
@@ -223,115 +222,115 @@ function emptyAddForm() {
     document.getElementById("memberEmail3-warning").style.display = "none";
 }
 
- function checkMemberDetialsInTable() {
-   
-     // let numberOfRows = document.querySelector("#member-table").childNodes;
-     let valid =true;
-     // if (numberOfRows[0].childNodes.length !== 6) {
-     //     console.log("inside if----------")
-     //     return false;
-     // }
-     
-     // for (let index = 0; index < numberOfRows.length; index++) {
-     //     console.log("check here in loop");
-     //     let memberName = numberOfRows[index].childNodes[1].childNodes[0];
-     //     let memberPhone = numberOfRows[index].childNodes[2].childNodes[0];
-     //     let memberEmail = numberOfRows[index].childNodes[3].childNodes[0];
-     //     let memberFile = numberOfRows[index].childNodes[4].childNodes[0];
- 
-     //     if (memberName.value === "") {
-     //         document.getElementById(`member-name-table-waring-1-${index}`).style.display = "";
-     //         document.getElementById(`member-name-table-waring-2-${index}`).style.display = "none";
-     //         memberName.classList.add("is-invalid");
-     //         memberName.setAttribute("onkeyup", "checkMemberDetialsInTable()");
-     //         valid=false;
-     //     } else if (memberName.value.length < 3) {
-     //         document.getElementById(`member-name-table-waring-1-${index}`).style.display = "none";
-     //         document.getElementById(`member-name-table-waring-2-${index}`).style.display = "";
-     //         memberName.classList.add("is-invalid");
-     //         memberName.setAttribute("onkeyup", "checkMemberDetialsInTable()");
-     //         valid=false;
-     //     } else {
-     //         document.getElementById(`member-name-table-waring-1-${index}`).style.display = "none";
-     //         document.getElementById(`member-name-table-waring-2-${index}`).style.display = "none";
-     //         if (memberName.classList.contains("is-invalid")) {
-     //             memberName.classList.add("is-valid");
-     //             memberName.classList.remove("is-invalid");
-     //         }
-     //     }
- 
-     //     const phoneFormat = /^[0-9]{10}$/;
- 
-     //     if (memberPhone.value === "") {
-     //         document.getElementById(`member-phone-table-waring-1-${index}`).style.display = "";
-     //         document.getElementById(`member-phone-table-waring-2-${index}`).style.display = "none";
-     //         memberPhone.classList.add("is-invalid");
-     //         memberPhone.setAttribute("onkeyup", "checkMemberDetialsInTable()");
-     //         valid=false;
-     //     } else if (!memberPhone.value.match(phoneFormat)) {
-     //         document.getElementById(`member-phone-table-waring-1-${index}`).style.display = "none";
-     //         document.getElementById(`member-phone-table-waring-2-${index}`).style.display = "";
-     //         memberPhone.classList.add("is-invalid");
-     //         memberPhone.setAttribute("onkeyup", "checkMemberDetialsInTable()");
-     //         valid=false;
-     //     } else {
-     //         document.getElementById(`member-phone-table-waring-1-${index}`).style.display = "none";
-     //         document.getElementById(`member-phone-table-waring-2-${index}`).style.display = "none";
-     //         if (memberPhone.classList.contains("is-invalid")) {
-     //             memberPhone.classList.add("is-valid");
-     //             memberPhone.classList.remove("is-invalid");
-     //         }
-     //     }
- 
-     //     let emailFormat = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
- 
-     //     if (memberEmail.value === "") {
-     //         document.getElementById(`member-email-table-waring-1-${index}`).style.display = "";
-     //         document.getElementById(`member-email-table-waring-2-${index}`).style.display = "none";
-     //         document.getElementById(`member-email-table-waring-3-${index}`).style.display = "none";
-     //         memberEmail.classList.add("is-invalid");
-     //         memberEmail.setAttribute("onkeyup", "checkMemberDetialsInTable()");
-     //         valid=false;
-     //     } else if (!memberEmail.value.match(emailFormat)) {
-     //         document.getElementById(`member-email-table-waring-1-${index}`).style.display = "none";
-     //         document.getElementById(`member-email-table-waring-2-${index}`).style.display = "";
-     //         document.getElementById(`member-email-table-waring-3-${index}`).style.display = "none";
-     //         memberEmail.classList.add("is-invalid");
-     //         memberEmail.setAttribute("onkeyup", "checkMemberDetialsInTable()");
-     //         valid=false;
-     //         console.log("check here in email");
-     //     } else {
-     //         let response = await confirmEmail(memberEmail.value);
-     //         if (response.availablity && await checkForRepeatEmail(response.email)) {
-     //             document.getElementById(`member-email-table-waring-1-${index}`).style.display = "none";
-     //             document.getElementById(`member-email-table-waring-2-${index}`).style.display = "none";
-     //             document.getElementById(`member-email-table-waring-3-${index}`).style.display = "none";
-     //             if (memberEmail.classList.contains("is-invalid")) {
-     //                 memberEmail.classList.add("is-valid");
-     //                 memberEmail.classList.remove("is-invalid");
-     //             }
-     //         } else {
-     //             document.getElementById(`member-email-table-waring-1-${index}`).style.display = "none";
-     //             document.getElementById(`member-email-table-waring-2-${index}`).style.display = "none";
-     //             document.getElementById(`member-email-table-waring-3-${index}`).style.display = "";
-     //             memberEmail.classList.add("is-invalid");
-     //             memberEmail.setAttribute("onkeyup", "checkMemberDetialsInTable()");
-     //             valid=false;
-     //         }
-     //     }
- 
-     //     if (memberFile.value === "") {
-     //         document.getElementById(`member-file-table-waring-1-${index}`).style.display = "";
-     //         memberFile.style.padding = "1px";
-     //         memberFile.style.border = "1px solid red";
-     //         memberFile.setAttribute("onchange", "checkMemberDetialsInTable()");
-     //         console.log("check here in file");
-     //         valid=false;
-     //     } else {
-     //         document.getElementById(`member-file-table-waring-1-${index}`).style.display = "none";
-     //         memberFile.style.padding = "0px";
-     //         memberFile.style.border = "none";
-     //     }
-     // }
+async function checkMemberDetialsInTable() {
+
+    let numberOfRows = document.querySelector("#member-table").childNodes;
+    let valid = true;
+    if (numberOfRows[0].childNodes.length !== 6) {
+        console.log("inside if----------")
+        return false;
+    }
+
+    for (let index = 0; index < numberOfRows.length; index++) {
+        console.log("check here in loop");
+        let memberName = numberOfRows[index].childNodes[1].childNodes[0];
+        let memberPhone = numberOfRows[index].childNodes[2].childNodes[0];
+        let memberEmail = numberOfRows[index].childNodes[3].childNodes[0];
+        let memberFile = numberOfRows[index].childNodes[4].childNodes[0];
+
+        if (memberName.value === "") {
+            document.getElementById(`member-name-table-waring-1-${index}`).style.display = "";
+            document.getElementById(`member-name-table-waring-2-${index}`).style.display = "none";
+            memberName.classList.add("is-invalid");
+            memberName.setAttribute("onkeyup", "checkMemberDetialsInTable()");
+            valid = false;
+        } else if (memberName.value.length < 3) {
+            document.getElementById(`member-name-table-waring-1-${index}`).style.display = "none";
+            document.getElementById(`member-name-table-waring-2-${index}`).style.display = "";
+            memberName.classList.add("is-invalid");
+            memberName.setAttribute("onkeyup", "checkMemberDetialsInTable()");
+            valid = false;
+        } else {
+            document.getElementById(`member-name-table-waring-1-${index}`).style.display = "none";
+            document.getElementById(`member-name-table-waring-2-${index}`).style.display = "none";
+            if (memberName.classList.contains("is-invalid")) {
+                memberName.classList.add("is-valid");
+                memberName.classList.remove("is-invalid");
+            }
+        }
+
+        const phoneFormat = /^[0-9]{10}$/;
+
+        if (memberPhone.value === "") {
+            document.getElementById(`member-phone-table-waring-1-${index}`).style.display = "";
+            document.getElementById(`member-phone-table-waring-2-${index}`).style.display = "none";
+            memberPhone.classList.add("is-invalid");
+            memberPhone.setAttribute("onkeyup", "checkMemberDetialsInTable()");
+            valid = false;
+        } else if (!memberPhone.value.match(phoneFormat)) {
+            document.getElementById(`member-phone-table-waring-1-${index}`).style.display = "none";
+            document.getElementById(`member-phone-table-waring-2-${index}`).style.display = "";
+            memberPhone.classList.add("is-invalid");
+            memberPhone.setAttribute("onkeyup", "checkMemberDetialsInTable()");
+            valid = false;
+        } else {
+            document.getElementById(`member-phone-table-waring-1-${index}`).style.display = "none";
+            document.getElementById(`member-phone-table-waring-2-${index}`).style.display = "none";
+            if (memberPhone.classList.contains("is-invalid")) {
+                memberPhone.classList.add("is-valid");
+                memberPhone.classList.remove("is-invalid");
+            }
+        }
+
+        let emailFormat = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+        if (memberEmail.value === "") {
+            document.getElementById(`member-email-table-waring-1-${index}`).style.display = "";
+            document.getElementById(`member-email-table-waring-2-${index}`).style.display = "none";
+            document.getElementById(`member-email-table-waring-3-${index}`).style.display = "none";
+            memberEmail.classList.add("is-invalid");
+            memberEmail.setAttribute("onkeyup", "checkMemberDetialsInTable()");
+            valid = false;
+        } else if (!memberEmail.value.match(emailFormat)) {
+            document.getElementById(`member-email-table-waring-1-${index}`).style.display = "none";
+            document.getElementById(`member-email-table-waring-2-${index}`).style.display = "";
+            document.getElementById(`member-email-table-waring-3-${index}`).style.display = "none";
+            memberEmail.classList.add("is-invalid");
+            memberEmail.setAttribute("onkeyup", "checkMemberDetialsInTable()");
+            valid = false;
+            console.log("check here in email");
+        } else {
+            let response = await confirmEmail(memberEmail.value);
+            if (response.availablity && await checkForRepeatEmail(response.email)) {
+                document.getElementById(`member-email-table-waring-1-${index}`).style.display = "none";
+                document.getElementById(`member-email-table-waring-2-${index}`).style.display = "none";
+                document.getElementById(`member-email-table-waring-3-${index}`).style.display = "none";
+                if (memberEmail.classList.contains("is-invalid")) {
+                    memberEmail.classList.add("is-valid");
+                    memberEmail.classList.remove("is-invalid");
+                }
+            } else {
+                document.getElementById(`member-email-table-waring-1-${index}`).style.display = "none";
+                document.getElementById(`member-email-table-waring-2-${index}`).style.display = "none";
+                document.getElementById(`member-email-table-waring-3-${index}`).style.display = "";
+                memberEmail.classList.add("is-invalid");
+                memberEmail.setAttribute("onkeyup", "checkMemberDetialsInTable()");
+                valid = false;
+            }
+        }
+
+        if (memberFile.value === "") {
+            document.getElementById(`member-file-table-waring-1-${index}`).style.display = "";
+            memberFile.style.padding = "1px";
+            memberFile.style.border = "1px solid red";
+            memberFile.setAttribute("onchange", "checkMemberDetialsInTable()");
+            console.log("check here in file");
+            valid = false;
+        } else {
+            document.getElementById(`member-file-table-waring-1-${index}`).style.display = "none";
+            memberFile.style.padding = "0px";
+            memberFile.style.border = "none";
+        }
+    }
     return false;
 }

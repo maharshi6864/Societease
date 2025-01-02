@@ -51,6 +51,14 @@
             </a>
         </li>
 
+         <li class="nav-item">
+            <a class="nav-link" href="vehicleEntryAndExitLogs">
+                <i class="mdi mdi-car menu-icon"></i>
+                <span class="menu-title" id="complain-menu-label">Vehicles Entry And Exit Logs</span>
+            </a>
+        </li>
+
+
         <li class="nav-item">
             <a class="nav-link" href="/logout">
                 <i class="mdi mdi-logout menu-icon"></i>

@@ -29,7 +29,6 @@ public class MembersController {
 
     @PostMapping(value = "user/saveMembers")
     public ModelAndView saveMembers(@RequestParam List<MultipartFile> memberFile, HttpServletRequest request) {
-
         String[] memberNames = request.getParameterValues("memberName");
         String[] memberPhoneNumber = request.getParameterValues("memberPhone");
         String[] memberEmailAddress = request.getParameterValues("memberEmail");

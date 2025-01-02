@@ -145,9 +145,11 @@
                             </div>
                             <div class="card-footer">
                                 <div class="container-fluid w-100">
-
-                                    <button onclick="printInvoice()" class="btn btn-primary  float-right mt-4 ml-2"><i
+                                    <button onclick="printInvoice()" id="print-button" class="btn btn-primary  float-right mt-4 ml-2"><i
                                             class="mdi mdi-printer mr-1"></i>Print
+                                    </button>
+                                    <button onclick="payMaintenance()" id="pay-button" class="btn btn-primary  float-right mt-4 ml-2"><i
+                                            class="mdi mdi-cash mr-1"></i>Pay
                                     </button>
                                 </div>
                             </div>
@@ -196,6 +198,7 @@
     <!-- Custom js for this page-->
     <script
             src="<%=request.getContextPath()%>/adminResources/js/data-table.js"></script>
+            	<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <!-- End custom js for this page-->
 </body>
 </html>

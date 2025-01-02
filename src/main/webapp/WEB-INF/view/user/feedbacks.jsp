@@ -218,8 +218,8 @@
                     </c:otherwise>
                 </c:choose>
 
-                <jsp:include page="../user/footer.jsp"></jsp:include>
             </div>
+                <jsp:include page="../user/footer.jsp"></jsp:include>
         </div>
 
         <!-- content-wrapper ends -->

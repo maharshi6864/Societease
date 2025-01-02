@@ -31,7 +31,6 @@ public class MaintenanceServiceImp implements MaintenanceService {
 
         String[] maintenanceTypes = request.getParameterValues("maintenanceType");
         String[] maintenanceAmount = request.getParameterValues("maintenanceAmount");
-        System.out.println(request.getParameter("maintenanceYear")+"???>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         List<String> months = Arrays.asList("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
         months.forEach(month -> {
             MaintenanceVo maintenanceVo = new MaintenanceVo();
