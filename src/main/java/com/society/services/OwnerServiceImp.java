@@ -89,8 +89,9 @@ public class OwnerServiceImp implements OwnerService {
 
     @Override
     public OwnerVo getCurrentOwner() {
-        System.out.println(this.loginService.getCurrentUser().getUsername());
+        System.out.println("Getting current Username : "+this.loginService.getCurrentUser().getUsername());
         List<OwnerVo> list = this.ownerDao.searchByUsername(this.loginService.getCurrentUser().getUsername());
+        System.out.println(list.get(0).getId());
         return list.get(0);
     }
 

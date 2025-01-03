@@ -1,0 +1,49 @@
+/* The popover container */
+.custom-popover {
+  position: absolute;
+  width: 220px;        /* Adjust as desired */
+  background: #fff;    /* Popover background */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  display: none;       /* Hidden by default */
+  z-index: 9999;       /* Ensure it’s on top */
+}
+
+/* Popover arrow (two triangles, layered) */
+.custom-popover::after {
+  content: "";
+  position: absolute;
+  top: -10px;       /* Position arrow above popover */
+  left: 20px;       /* Where arrow will appear horizontally */
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent #ccc transparent;
+}
+
+.custom-popover::before {
+  content: "";
+  position: absolute;
+  top: -8px;        /* Position inner (white) arrow */
+  left: 20px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent #fff transparent;
+}
+
+/* Title & body styling inside the popover */
+.custom-popover-title {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.custom-popover-body {
+  font-size: 14px;
+  color: #666;
+}
+
+/* Show the popover */
+.custom-popover.show {
+  display: block;
+}

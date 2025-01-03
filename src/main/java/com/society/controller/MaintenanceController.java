@@ -3,6 +3,8 @@ package com.society.controller;
 import com.razorpay.Order;
 import com.razorpay.RazorpayClient;
 import com.razorpay.RazorpayException;
+import com.society.dto.MaintenancePaymentConfirmDto;
+import com.society.dto.ResponseDto;
 import com.society.models.MaintenanceChargesVo;
 import com.society.models.MaintenancePaidVo;
 import com.society.models.MaintenanceVo;
@@ -11,10 +13,13 @@ import com.society.services.*;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -106,7 +111,7 @@ public class MaintenanceController {
 		return listOFAvailableHouseTypeForYear;
 	}
 
-	@GetMapping(value = "user/payMaintenance/{year}/{month}/{paymentAmount}")
+	@GetMapping(value = "user/payMaintenance/{paymentAmount}")
 //	Remember to change the url on front side and also get the year and month 
 	public HashMap<?, ?> startPayment(@PathVariable("paymentAmount") String paymentAmount) throws RazorpayException {
 		int amount = Integer.parseInt(paymentAmount);
@@ -128,5 +133,13 @@ public class MaintenanceController {
 		map.put("razorPay", createdOrder.toString());
 		return map;
 	}
+	
+	@PostMapping(value = "user/maintenancePaymentConfirm")
+	public ResponseEntity<ResponseDto> maintenancePaymentConfirm(@RequestBody MaintenancePaymentConfirmDto maintenancePaymentConfirmDto) {
+		this.maintenancePaidService.confirmMaintenancePayment(maintenancePaymentConfirmDto);	
+		ResponseDto responseDto=new ResponseDto("success", true, maintenancePaymentConfirmDto.getPayemntId());
+		return new ResponseEntity<>(responseDto,HttpStatus.OK);
+	}
+
 
 }

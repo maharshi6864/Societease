@@ -1,5 +1,6 @@
 package com.society.services;
 
+import com.society.dto.MaintenancePaymentConfirmDto;
 import com.society.models.MaintenancePaidVo;
 import com.society.models.OwnerVo;
 import com.society.repository.MaintenancePaidDao;
@@ -52,4 +53,29 @@ public class MaintenancePaidServiceImp implements MaintenancePaidService {
             return new MaintenancePaidVo();
         }
     }
+
+	@Override
+	public void confirmMaintenancePayment(MaintenancePaymentConfirmDto maintenancePaymentConfirmDto) {
+		try {
+			MaintenancePaidVo maintenancePaidVo=new MaintenancePaidVo();
+			OwnerVo ownerVo=this.ownerService.getCurrentOwner();
+//			Setting up the MaintenancePaidVo for saving it in the database.
+			maintenancePaidVo.setMaintenanceStatus(true);
+			maintenancePaidVo.setMonth(maintenancePaymentConfirmDto.getMonth());
+			maintenancePaidVo.setYear(maintenancePaymentConfirmDto.getYear());
+			maintenancePaidVo.setOrderId(maintenancePaymentConfirmDto.getOrderId());
+			maintenancePaidVo.setPaymentId(maintenancePaymentConfirmDto.getPayemntId());
+			maintenancePaidVo.setTimestamp(System.currentTimeMillis());
+			maintenancePaidVo.setPaymentType("Online");
+			System.out.println(ownerVo.getId());
+			maintenancePaidVo.setOwnerVo(ownerVo);
+//			Saving the MaintenancePaidVo in database.
+			System.out.println("Saving it !!");
+			this.maintenancePaidDao.saveMaintenancePaid(maintenancePaidVo);
+		}catch(Exception e)
+		{
+			System.out.println("Exception While Saving MaintenancePaidVo.");
+			e.printStackTrace();
+		}		
+	}
 }

@@ -39,6 +39,7 @@ public class MaintenancePaidController {
     @GetMapping(value = "getMaintenancePaidDetailsForOwner/{ownerId}/{maintenanceYear}")
     public List<MaintenancePaidVo> getMaintenancePaidDetailsForOwner(@PathVariable("ownerId") int ownerId, @PathVariable("maintenanceYear") String maintenanceYear) {
         List<MaintenancePaidVo> maintenancePaidOfOwnerList = this.maintenancePaidService.getMaintenancePaidDetailsForOwner(ownerId, maintenanceYear);
+        System.out.println(maintenancePaidOfOwnerList.size());
         return maintenancePaidOfOwnerList;
     }
     

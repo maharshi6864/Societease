@@ -23,7 +23,9 @@ public class MaintenancePaidDaoImp implements MaintenancePaidDao {
     public void saveMaintenancePaid(MaintenancePaidVo maintenancePaidVo) {
         try {
             Session session = this.sessionFactory.getCurrentSession();
+            System.out.println("saving maintenace entity");
             session.saveOrUpdate(maintenancePaidVo);
+            System.out.println("maintenace entity saved");
         } catch (HibernateException e) {
             e.printStackTrace();
         }

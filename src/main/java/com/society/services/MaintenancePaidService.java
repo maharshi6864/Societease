@@ -1,5 +1,6 @@
 package com.society.services;
 
+import com.society.dto.MaintenancePaymentConfirmDto;
 import com.society.models.MaintenancePaidVo;
 
 import java.util.List;
@@ -13,4 +14,6 @@ public interface MaintenancePaidService {
     void maintenanceUnpaid(int ownerId, String year,String month);
 
     MaintenancePaidVo getMaintenancePaidDetailsForOwner(int ownerId, String year,String month);
+    
+    void confirmMaintenancePayment(MaintenancePaymentConfirmDto maintenancePaymentConfirmDto);
 }

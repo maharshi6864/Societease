@@ -841,11 +841,13 @@ function getOwnerMaintenanceInfo(ownerId) {
   htp.onreadystatechange = function () {
     if (htp.readyState == 4) {
       var maintenancePaidDetailList = JSON.parse(htp.responseText);
+      console.log("Maintenance Month List", maintenancePaidDetailList);
       createMaintenanceDetailTable(maintenancePaidDetailList);
     }
   };
   htp.open(
     "GET",
+    // Check this URL For getting the month list
     `http://localhost:8088/getMaintenancePaidDetailsForOwner/${ownerId}/${maintenanceYear}`,
     true
   );
@@ -886,7 +888,7 @@ function createMaintenanceDetailTable(maintenancePaidDetailList) {
       ).innerHTML = ` <div class="badge badge-success">Paid</div>`;
       newTR.insertCell(
         3
-      ).innerHTML = `<button class="btn btn-outline-danger" style="padding: 0.1rem 0.6rem" onclick="maintenanceUnpaid(localStorage.getItem('ownerIdForMain'),'${monthList[index]}',document.getElementById('maintenance-year').value)">Unpaid</button>`;
+      ).innerHTML = `<i class="mdi mdi-information-outline" title="Paid(Cash/Online )"></i>`;
     } else {
       newTR.insertCell(
         2

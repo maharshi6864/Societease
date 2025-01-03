@@ -19,14 +19,16 @@ public class MaintenancePaidVo {
 	private String paymentType;
 
 	private boolean maintenanceStatus;
+	
+	private String paymentId;
+	
+	private String orderId;
+	
+	private long timestamp;
 
 	@ManyToOne
 	@JoinColumn(name = "ownerId")
 	private OwnerVo ownerVo;
-
-	@ManyToOne
-	@JoinColumn(name = "transactionId")
-	private TransactionVo transactionVo;
 
 	public int getId() {
 		return id;
@@ -67,6 +69,30 @@ public class MaintenancePaidVo {
 	public void setMaintenanceStatus(boolean maintenanceStatus) {
 		this.maintenanceStatus = maintenanceStatus;
 	}
+	
+	public String getPaymentId() {
+		return paymentId;
+	}
+
+	public void setPaymentId(String paymentId) {
+		this.paymentId = paymentId;
+	}
+
+	public String getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
+	}
+	
+	public long getTimestamp() {
+		return timestamp;
+	}
+
+	public void setTimestamp(long timestamp) {
+		this.timestamp = timestamp;
+	}
 
 	public OwnerVo getOwnerVo() {
 		return ownerVo;
@@ -74,14 +100,6 @@ public class MaintenancePaidVo {
 
 	public void setOwnerVo(OwnerVo ownerVo) {
 		this.ownerVo = ownerVo;
-	}
-
-	public TransactionVo getTransactionVo() {
-		return transactionVo;
-	}
-
-	public void setTransactionVo(TransactionVo transactionVo) {
-		this.transactionVo = transactionVo;
 	}
 
 }

@@ -108,18 +108,17 @@ function printMaintenanceTable(maintenanceList) {
       parseInt(document.getElementById("amount-total").innerHTML) +
       parseInt(maintenanceChargesObjs[index].amount);
   }
-  console.log(maintenanceList[2]);
 
   if (maintenanceList[2].maintenanceStatus === true) {
     document.getElementById("paid-div").style.display = "";
     document.getElementById("pending-div").style.display = "none";
-    document.getElementById("pay-button").style.display = "none";
+    document.getElementById("pay-button").style.display = "none ";
     document.getElementById("print-button").style.display = "";
   } else {
     document.getElementById("paid-div").style.display = "none";
     document.getElementById("pending-div").style.display = "";
     document.getElementById("pay-button").style.display = "";
-    document.getElementById("print-button").style.display = "none";
+    document.getElementById("print-button").style.display = "none ";
   }
 }
 
@@ -151,7 +150,6 @@ function getDetails() {
 }
 
 function printDetails(ownerObj) {
-  console.log(ownerObj);
   let owner = ownerObj[0];
   let society = ownerObj[1];
   document.getElementById(
@@ -254,31 +252,54 @@ async function payMaintenance() {
 }
 
 async function paymentSuccess(serverSideRazorPay, responseFromRazorPay) {
-  let order = {
-    address: document.getElementById("address").value,
-    state: document.getElementById("state").value,
-    city: document.getElementById("city").value,
-    zip: document.getElementById("pincode").value,
-    razorpayOrderId: serverSideRazorPay.id,
-    razorpayPaymentId: responseFromRazorPay.razorpay_payment_id,
+  let paymentConfimEntity = {
+    orderId: serverSideRazorPay.id,
+    paymentId: responseFromRazorPay.razorpay_payment_id,
+    month: document.getElementById("month").value,
+    year: date.getFullYear(),
+    amount: document.getElementById("amount-total").innerHTML,
   };
 
-  console.log(order);
-
+  console.log(paymentConfimEntity);
+  let data;
   try {
     // Making POST request to finalize the payment
-    let response = await fetch("cartCheckout", {
+    let response = await fetch("maintenancePaymentConfirm", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(order),
+      body: JSON.stringify(paymentConfimEntity),
     });
 
-    if (response.ok) {
-      window.location.href = "user/confirmMaintenancePayment";
+    if (response.status) {
+      swal({
+        title: "Payment Confirmed!",
+        text: `Your payment for month ${paymentConfimEntity.month} and year ${paymentConfimEntity.year}.`,
+        icon: "success",
+        button: {
+          text: "Continue",
+          value: true,
+          onclick: "closeConfirmBox()",
+          visible: true,
+          className: "btn btn-primary",
+        },
+      });
+      setTimeout(() => {
+        window.location.href = "maintenance";
+      }, 2500);
     } else {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      swal({
+        title: "Payment Canceled!",
+        text: "If the amount has been debited i will be creadited in your account within 7-days.",
+        icon: "warning",
+        buttons: {
+          text: "Continue",
+          value: true,
+          visible: true,
+          className: "btn btn-primary",
+        },
+      });
     }
   } catch (error) {
     console.error("Error during checkout:", error);
@@ -292,6 +313,21 @@ function paymentFailed(responseFromRazorPay) {
   console.log(responseFromRazorPay.error.step);
   console.log(responseFromRazorPay.error.reason);
   console.log(responseFromRazorPay.error.metadata.order_id);
+  swal({
+    title: "Payment Canceled!",
+    text: "If the amount has been debited i will be creadited in your account within 7-days.",
+    icon: "warning",
+    button: {
+      text: "Continue",
+      value: true,
+      visible: true,
+      className: "btn btn-primary",
+    },
+  });
 }
 
 window.addEventListener("load", getDetails);
+
+function closeConfirmBox() {
+  window.location.href = "maintenance";
+}
