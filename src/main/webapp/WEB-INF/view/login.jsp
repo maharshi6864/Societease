@@ -53,7 +53,7 @@
                                     <input type="submit" value="SIGN IN" onclick=""
                                            class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">
                                     <div class="mt-1 d-flex justify-content-end align-items-center">
-                                        <a href="#" class="auth-link">Forgot password?</a>
+                                        <a href="forgetPassword" class="auth-link">Forgot password?</a>
                                     </div>
                                 </div>
 

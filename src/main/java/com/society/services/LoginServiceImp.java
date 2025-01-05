@@ -38,4 +38,11 @@ public class LoginServiceImp implements LoginService {
 		return loginVo;
 	}
 
+	@Override
+	@Transactional
+	public LoginVo findByUsername(String username) {
+		LoginVo loginVo = loginDAO.getCurrentUserByUserName(username);
+		return loginVo;
+	}
+
 }

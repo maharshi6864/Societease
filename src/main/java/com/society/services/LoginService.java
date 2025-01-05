@@ -9,6 +9,8 @@ public interface LoginService {
 
 	LoginVo findById(int id);
 	
+	LoginVo findByUsername(String username);
+	
 	LoginVo getCurrentUser();
 
 }
